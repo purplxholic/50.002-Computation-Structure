@@ -1,0 +1,36 @@
+module tester (
+    input clk,  // clock
+    input rst,  // reset
+    // outputs alufn, a, b and expected output during testing
+    output alufn[8],
+    output a[8],
+    output b[8],
+    output exp[8]
+  ) {
+  
+  dff counter[30](.clk(clk), .rst(rst));
+  sig testcases[12][4][8];      // 12 test cases, each one is in the format {alufn(8bit), a(8bit), b(8bit), op(8bit)}
+  sig n[4];
+
+  always {
+    testcases[11] = {8b000000, 8b11110, 8b111000, 8b1010110};// ADD test case
+    testcases[10] = {8b000001, 8b11110, 8b111000, 8b11100110};// SUB test case
+    testcases[9] = {8b011000, 8b11110, 8b111000, 8b11000};   // AND test case
+    testcases[8] = {8b011110, 8b11110, 8b111000, 8b111110};  // OR test case
+    testcases[7] = {8b010110, 8b11110, 8b111000, 8b100110};  // XOR test case
+    testcases[6] = {8b011010, 8b11110, 8b111000, 8b11110};   // A test case
+    testcases[5] = {8b100000, 8b11110, 8b10, 8b1111000};     // SHL test case
+    testcases[4] = {8b100001, 8b10011110, 8b1, 8b01001111};  // SHR test case
+    testcases[3] = {8b100011, 8b10011110, 8b1, 8b11001111};  // SRA test case
+    testcases[2] = {8b110011, 8b11110, 8b111000, 8b0};       // CMPEQ test case
+    testcases[1] = {8b110101, 8b11110, 8b111000, 8b1};       // CMPLT test case
+    testcases[0] = {8b110111, 8b11110, 8b111000, 8b1};       // CMPLE test case
+    
+    n = counter.q[29-:4];
+    counter.d = counter.q + 1;
+    alufn = testcases[n][3];
+    a = testcases[n][2];
+    b = testcases[n][1];
+    exp = testcases[n][0];
+  }
+}
