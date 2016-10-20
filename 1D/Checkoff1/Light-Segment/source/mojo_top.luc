@@ -22,18 +22,20 @@ module mojo_top (
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
     .rst(rst){
-    counter ctr (#SIZE(4), #DIV(24), #TOP(9));
+    
       //top(9) to count from 0-9 , size(4) since 1111 = 9 
+
+      multi_seven_seg seg;
   }
   }
   
-  seven_seg seg; // to replace decoder
 
   
   always {
-    seg.char = ctr.value;
-    io_seg = ~seg.segs;
-    io_sel = ~4h1;
+    //seg.char = ctr.value;
+    seg.values = {4h8,4h5,4h3,4h1}; // will display these 
+    io_seg = ~seg.segs; //input 
+    io_sel = ~seg.sel; // sel is the output of seg aft taking input of seg values
     
     
     reset_cond.in = ~rst_n; // input raw inverted reset signal
