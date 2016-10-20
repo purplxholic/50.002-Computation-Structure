@@ -1,0 +1,25 @@
+module mux (
+    input a,
+    input b,
+    input c,
+    input d,
+    input select[6],
+    output g
+  ) {
+  
+
+  always {
+  if (a & select[0]){
+    g = a;
+    }
+    case(select){
+    0: g = a;
+    1: g = b;
+    2: g = c;
+    3: g = d;
+    default: g = 0;
+    }
+    
+}
+}
+
