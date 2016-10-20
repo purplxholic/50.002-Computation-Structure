@@ -16,6 +16,7 @@ module mojo_top (
     output io_sel [4],      // Digit select on IO Shield
     input io_button [5],    // 5 buttons on IO Shield
     input io_dip [3][8]     // DIP switches on IO Shield
+   
   ) {
   
   sig rst;                  // reset signal
@@ -30,6 +31,9 @@ module mojo_top (
   comparer cmp;
   shifter shift;
   boolean boole;
+  
+  //for light 
+  multi_seven_seg seg;
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -48,6 +52,7 @@ module mojo_top (
     add.a = io_dip[1];
     add.b = io_dip[0];
     add.alufn0 = io_dip[2][0];
+    seg.values = ;
     
     // compare module inputs
     cmp.z = add.z;
