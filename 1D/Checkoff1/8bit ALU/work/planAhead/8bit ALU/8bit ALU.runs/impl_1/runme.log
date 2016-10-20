@@ -9,10 +9,9 @@ Command Line: D:\Programs\14.7\ISE_DS\ISE\bin\nt64\unwrapped\ngdbuild.exe
 Executing edif2ngd -quiet "mojo_top_0.edf" "_ngo\mojo_top_0.ngo"
 Release 14.7 - edif2ngd P.20131013 (nt64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
-Reading NGO file
-"D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D
-/Checkoff1/8bit ALU/work/planAhead/8bit ALU/8bit
-ALU.runs/impl_1/_ngo/mojo_top_0.ngo" ...
+Reading NGO file "C:/Users/Aftershock
+PC/Desktop/Github/50.002-Computation-Structure/1D/Checkoff1/8bit
+ALU/work/planAhead/8bit ALU/8bit ALU.runs/impl_1/_ngo/mojo_top_0.ngo" ...
 Gathering constraint information from source properties...
 Done.
 
@@ -68,50 +67,50 @@ Updating timing models...
 INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
    (.mrp).
 Running timing-driven placement...
-Total REAL time at the beginning of Placer: 3 secs 
-Total CPU  time at the beginning of Placer: 3 secs 
+Total REAL time at the beginning of Placer: 2 secs 
+Total CPU  time at the beginning of Placer: 2 secs 
 
 Phase 1.1  Initial Placement Analysis
-Phase 1.1  Initial Placement Analysis (Checksum:c9996762) REAL time: 3 secs 
+Phase 1.1  Initial Placement Analysis (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 2.7  Design Feasibility Check
-Phase 2.7  Design Feasibility Check (Checksum:c9996762) REAL time: 3 secs 
+Phase 2.7  Design Feasibility Check (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 3.31  Local Placement Optimization
-Phase 3.31  Local Placement Optimization (Checksum:c9996762) REAL time: 3 secs 
+Phase 3.31  Local Placement Optimization (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 4.2  Initial Placement for Architecture Specific Features
 Phase 4.2  Initial Placement for Architecture Specific Features
-(Checksum:c9996762) REAL time: 3 secs 
+(Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 5.36  Local Placement Optimization
-Phase 5.36  Local Placement Optimization (Checksum:c9996762) REAL time: 3 secs 
+Phase 5.36  Local Placement Optimization (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 6.30  Global Clock Region Assignment
-Phase 6.30  Global Clock Region Assignment (Checksum:c9996762) REAL time: 3 secs 
+Phase 6.30  Global Clock Region Assignment (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 7.3  Local Placement Optimization
-Phase 7.3  Local Placement Optimization (Checksum:c9996762) REAL time: 3 secs 
+Phase 7.3  Local Placement Optimization (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 8.5  Local Placement Optimization
-Phase 8.5  Local Placement Optimization (Checksum:c9996762) REAL time: 3 secs 
+Phase 8.5  Local Placement Optimization (Checksum:1a4267f7) REAL time: 3 secs 
 
 Phase 9.8  Global Placement
 ..
-......
-Phase 9.8  Global Placement (Checksum:38facdc8) REAL time: 3 secs 
+.....
+Phase 9.8  Global Placement (Checksum:d699e6f9) REAL time: 3 secs 
 
 Phase 10.5  Local Placement Optimization
-Phase 10.5  Local Placement Optimization (Checksum:38facdc8) REAL time: 3 secs 
+Phase 10.5  Local Placement Optimization (Checksum:d699e6f9) REAL time: 3 secs 
 
 Phase 11.18  Placement Optimization
-Phase 11.18  Placement Optimization (Checksum:2280506d) REAL time: 3 secs 
+Phase 11.18  Placement Optimization (Checksum:6b7d5286) REAL time: 3 secs 
 
 Phase 12.5  Local Placement Optimization
-Phase 12.5  Local Placement Optimization (Checksum:2280506d) REAL time: 3 secs 
+Phase 12.5  Local Placement Optimization (Checksum:6b7d5286) REAL time: 3 secs 
 
 Phase 13.34  Placement Validation
-Phase 13.34  Placement Validation (Checksum:2280506d) REAL time: 3 secs 
+Phase 13.34  Placement Validation (Checksum:6b7d5286) REAL time: 3 secs 
 
 Total REAL time to Placer completion: 3 secs 
 Total CPU  time to Placer completion: 3 secs 
@@ -123,21 +122,21 @@ Number of errors:      0
 Number of warnings:    6
 Slice Logic Utilization:
   Number of Slice Registers:                     0 out of  11,440    0%
-  Number of Slice LUTs:                         75 out of   5,720    1%
-    Number used as logic:                       75 out of   5,720    1%
-      Number using O6 output only:              66
+  Number of Slice LUTs:                        136 out of   5,720    2%
+    Number used as logic:                      136 out of   5,720    2%
+      Number using O6 output only:             121
       Number using O5 output only:               0
-      Number using O5 and O6:                    9
+      Number using O5 and O6:                   15
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   1,440    0%
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    29 out of   1,430    2%
-  Number of MUXCYs used:                         8 out of   2,860    1%
-  Number of LUT Flip Flop pairs used:           75
-    Number with an unused Flip Flop:            75 out of      75  100%
-    Number with an unused LUT:                   0 out of      75    0%
-    Number of fully used LUT-FF pairs:           0 out of      75    0%
+  Number of occupied Slices:                    54 out of   1,430    3%
+  Number of MUXCYs used:                        24 out of   2,860    1%
+  Number of LUT Flip Flop pairs used:          136
+    Number with an unused Flip Flop:           136 out of     136  100%
+    Number with an unused LUT:                   0 out of     136    0%
+    Number of fully used LUT-FF pairs:           0 out of     136    0%
     Number of slice register sites lost
       to control set restrictions:               0 out of  11,440    0%
 
@@ -174,7 +173,7 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                3.41
+Average Fanout of Non-Clock Nets:                3.73
 
 Peak Memory Usage:  372 MB
 Total REAL time to MAP completion:  3 secs 
@@ -210,21 +209,21 @@ Device Utilization Summary:
 
 Slice Logic Utilization:
   Number of Slice Registers:                     0 out of  11,440    0%
-  Number of Slice LUTs:                         75 out of   5,720    1%
-    Number used as logic:                       75 out of   5,720    1%
-      Number using O6 output only:              66
+  Number of Slice LUTs:                        136 out of   5,720    2%
+    Number used as logic:                      136 out of   5,720    2%
+      Number using O6 output only:             121
       Number using O5 output only:               0
-      Number using O5 and O6:                    9
+      Number using O5 and O6:                   15
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   1,440    0%
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    29 out of   1,430    2%
-  Number of MUXCYs used:                         8 out of   2,860    1%
-  Number of LUT Flip Flop pairs used:           75
-    Number with an unused Flip Flop:            75 out of      75  100%
-    Number with an unused LUT:                   0 out of      75    0%
-    Number of fully used LUT-FF pairs:           0 out of      75    0%
+  Number of occupied Slices:                    54 out of   1,430    3%
+  Number of MUXCYs used:                        24 out of   2,860    1%
+  Number of LUT Flip Flop pairs used:          136
+    Number with an unused Flip Flop:           136 out of     136  100%
+    Number with an unused LUT:                   0 out of     136    0%
+    Number of fully used LUT-FF pairs:           0 out of     136    0%
     Number of slice register sites lost
       to control set restrictions:               0 out of  11,440    0%
 
@@ -287,29 +286,29 @@ WARNING:Par:288 - The signal io_dip(23)_IBUF has no load.  PAR will not attempt 
 Starting Router
 
 
-Phase  1  : 586 unrouted;      REAL time: 2 secs 
+Phase  1  : 883 unrouted;      REAL time: 2 secs 
 
-Phase  2  : 465 unrouted;      REAL time: 2 secs 
+Phase  2  : 756 unrouted;      REAL time: 2 secs 
 
-Phase  3  : 246 unrouted;      REAL time: 4 secs 
+Phase  3  : 377 unrouted;      REAL time: 4 secs 
 
-Phase  4  : 246 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  4  : 377 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
 Updating file: mojo_top_0_routed.ncd with current fully routed design.
 
-Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  5  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
-Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  6  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
-Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  7  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
-Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  8  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
-Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
+Phase  9  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
 
-Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 5 secs 
-Total REAL time to Router completion: 5 secs 
-Total CPU time to Router completion: 5 secs 
+Phase 10  : 0 unrouted; (Par is working to improve performance)     REAL time: 4 secs 
+Total REAL time to Router completion: 4 secs 
+Total CPU time to Router completion: 4 secs 
 
 Partition Implementation Status
 -------------------------------
@@ -330,10 +329,10 @@ All signals are completely routed.
 
 WARNING:Par:283 - There are 14 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
 
-Total REAL time to PAR completion: 5 secs 
-Total CPU time to PAR completion: 5 secs 
+Total REAL time to PAR completion: 4 secs 
+Total CPU time to PAR completion: 4 secs 
 
-Peak Memory Usage:  341 MB
+Peak Memory Usage:  334 MB
 
 Placer: Placement generated during map.
 Routing: Completed - No errors found.
@@ -355,7 +354,7 @@ Loading device for application Rf_Device from file '6slx9.nph' in environment
 D:\Programs\14.7\ISE_DS\ISE\.
    "mojo_top_0" is an NCD, version 3.2, device xc6slx9, package tqg144, speed -2
 
-Analysis completed Thu Oct 20 21:49:18 2016
+Analysis completed Fri Oct 21 00:32:48 2016
 --------------------------------------------------------------------------------
 
 Generating Report ...
