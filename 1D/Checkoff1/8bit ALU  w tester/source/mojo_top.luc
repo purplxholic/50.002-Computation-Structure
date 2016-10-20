@@ -80,6 +80,7 @@ module mojo_top (
       mult.b = tst.b;
       mult.alufn1 = tst.alufn[1];
       
+      //ALUFN controls
       result = 8b0;
       case(tst.alufn[6:4]) {
         b000: result = add.op;
