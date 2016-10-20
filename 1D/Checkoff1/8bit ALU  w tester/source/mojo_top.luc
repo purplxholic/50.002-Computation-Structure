@@ -16,24 +16,31 @@ module mojo_top (
     output io_sel [4],      // Digit select on IO Shield
     input io_button [5],    // 5 buttons on IO Shield
     input io_dip [3][8]     // DIP switches on IO Shield
+   
   ) {
- 
+  
   sig rst;                  // reset signal
   sig result[8];
+  
+  .clk(clk) {
+  // The reset conditioner is used to synchronize the reset signal to the FPGA
+  // clock. This ensures the entire FPGA comes out of reset at the same time.
+  reset_conditioner reset_cond;
+ 
+  .rst(rst) {
+    
+      tester tst;
+  }
+}
+ 
+multi_seven_seg seg;
+ 
   adder add;
   comparer cmp;
   shifter shift;
   boolean boole;
   multiply mult;
   
-  .clk(clk) {
-    // The reset conditioner is used to synchronize the reset signal to the FPGA
-    // clock. This ensures the entire FPGA comes out of reset at the same time.
-    reset_conditioner reset_cond;
-    .rst(rst) {
-      tester tst;
-    }
-  }
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -48,8 +55,16 @@ module mojo_top (
     io_seg = 8hff;          // turn segments off
     io_sel = 4hf;           // select no digits
     
+    seg.clk = clk;
+   seg.rst = rst;
     
-////////////////////////////      TEST MODE      ////////////////////////////
+    seg.values[3:0] = {4he, 4he, 4he, 4he}; //displays nothing on 7 seg
+    
+    // segment can only take in 4 inputs and the 4 inputs must be
+    //of 4 bits leng ? 
+    //seg.values= {add.op[7:0],boole.op[7:0]};
+    
+    ////////////////////////////      TEST MODE      ////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
     
     if (io_dip[2][7]) {     // when switch 23 is on, add/cmp/shift/boole modules will take inputs from tst module
@@ -81,19 +96,35 @@ module mojo_top (
       mult.alufn1 = tst.alufn[1];
       
       result = 8b0;
-      case(tst.alufn[6:4]) {
-        b000: result = add.op;
-        b001: result = boole.op;
-        b010: result = shift.op;
-        b011: result = cmp.op;
-        b100: result = mult.op;
+      case(tst.alufn[5:4]) {
+        b00: result = add.op;
+        b01: result = boole.op;
+        b10: result = shift.op;
+        b11: result = cmp.op;
       }
       
       io_led[0] = result;
       io_led[1] = tst.exp;
       io_led[2] = tst.alufn;
       io_led[2][7] = (tst.exp == result);
+      
+      io_seg = ~seg.seg; //turn segments on
+    //io_sel= ~4h2; //only turn on the first 2 digits 
+    io_sel = ~seg.sel;
+    // if the test cases are right 
+      // cause the LED segment to display
+      //YEAH 
+    if (tst.exp == result){
+      seg.values[3] = d10;
+        seg.values[2] = d11;
+        seg.values[1] = d12;
+        seg.values[0] = d13;
+        }
+      
+      
+      
     }
+      
     
 ////////////////////////////      ALU MODE      /////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -132,6 +163,8 @@ module mojo_top (
       b011: io_led[0] = cmp.op;
       b100: io_led[0] = mult.op;
     }
+      
   }
+    
 }
 }
