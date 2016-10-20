@@ -6,7 +6,7 @@ module multiply (
     output op[8]
   ) {  
   sig tmpmult[16];
-
+ //multiply and divide based on alufn1 if 1 = * if 0 = /
  always {
   
   if (alufn1) {
