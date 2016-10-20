@@ -11,6 +11,7 @@ module mojo_top (
     input avr_tx,           // AVR TX (FPGA RX)
     output avr_rx,          // AVR RX (FPGA TX)
     input avr_rx_busy       // AVR RX buffer full
+   
   ) {
   
   sig rst;                  // reset signal
@@ -26,20 +27,14 @@ module mojo_top (
   }
   }
   
+  seven_seg seg; // to replace decoder
+
   
   always {
-  
-    //num_to_seg.in = ctr.value;
-        
+    seg.char = ctr.value;
+    io_seg = ~seg.segs;
+    io_sel = ~4h1;
     
-    //to not cycle 
-    //io_sel = 4h0; 
-    
-    //to cycle 
-    num_to_seg.in = ctr.value[2:0]
-    num_to_digit.in = ctr.value[4:3];
-    io_seg = ~num_to_seg.out; //~ to invert 
-    io_sel = ~num_to_digit.out;
     
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
