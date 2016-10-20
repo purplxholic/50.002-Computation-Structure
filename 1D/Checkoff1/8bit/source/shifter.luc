@@ -1,0 +1,16 @@
+module shifter (
+    input a[8],      // first 8bit input
+    input b[8],      // second 8bit input
+    input alufn[2],  // control signals
+    output op[8]     // 8bit output of shift operation
+  ) {
+
+  always {
+    op = 8b0;
+    case(alufn) {
+      b00: op = a << b;    // shift left
+      b01: op = a >> b;    // shift right
+      b11: op = $signed(a) >>> b;   // shift right with sign extension
+    }
+  }
+}

@@ -34,6 +34,7 @@ module mojo_top (
       tester tst;
     }
   }
+  //add in segment here
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
