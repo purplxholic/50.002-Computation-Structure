@@ -49,9 +49,12 @@ module mojo_top (
     io_led = 3x{{8h00}};    // turn LEDs off
     //io_seg = 8hff;          // turn segments off
     //io_sel = 4hf;           // select no digits
+   //io_seg = 8hff;          // turn segments off
+    //io_sel = 4hf;           // select no digits
     io_seg = ~seg.seg; //turn segments on
-    io_sel= ~seg.sel;
-    seg.values= {4h8,4h5,4h3,4h1};
+    io_sel= ~4h2; //only turn on the first 2 digits 
+    
+    
     
     // adder module inputs
     add.a = io_dip[1];
@@ -75,6 +78,10 @@ module mojo_top (
     boole.a = io_dip[1];
     boole.b = io_dip[0];
     boole.alufn = io_dip[2][3:0];
+    
+    // segment can only take in 4 inputs and the 4 inputs must be
+    //of 4 bits length ? 
+    seg.values= {add.op[3:0],boole.op[3:0],cmp.op[3:0],shift.op[3:0]};
     
     case(io_dip[2][5:4]) {
       b00: io_led[0] = add.op;
