@@ -81,11 +81,12 @@ module mojo_top (
       mult.alufn1 = tst.alufn[1];
       
       result = 8b0;
-      case(tst.alufn[5:4]) {
-        b00: result = add.op;
-        b01: result = boole.op;
-        b10: result = shift.op;
-        b11: result = cmp.op;
+      case(tst.alufn[6:4]) {
+        b000: result = add.op;
+        b001: result = boole.op;
+        b010: result = shift.op;
+        b011: result = cmp.op;
+        b100: result = mult.op;
       }
       
       io_led[0] = result;

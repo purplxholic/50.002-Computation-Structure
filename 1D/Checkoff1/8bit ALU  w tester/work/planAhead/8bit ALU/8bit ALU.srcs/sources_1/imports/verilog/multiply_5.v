@@ -19,7 +19,7 @@ module multiply_5 (
     if (alufn1) begin
       tmpmult = a * b;
     end else begin
-      tmpmult[0+15-:16] = 1'h1;
+      tmpmult = a / b;
     end
     op = tmpmult[0+7-:8];
   end

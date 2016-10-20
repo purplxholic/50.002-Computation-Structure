@@ -9,10 +9,12 @@ module tester (
   ) {
   
   dff counter[30](.clk(clk), .rst(rst)); // clock input
-  sig testcases[12][4][8];      // 12 test cases, each one is in the format {alufn(8bit), a(8bit), b(8bit), op(8bit)}
+  sig testcases[14][4][8];      // 12 test cases, each one is in the format {alufn(8bit), a(8bit), b(8bit), op(8bit)}
   sig n[4];
 
   always {
+    testcases[13] = {8b1000000, 8b000100, 8b000010, 8b000010};//Divide case
+    testcases[12] = {8b1000010, 8b000101, 8b000010, 8b001010};// Mult test case
     testcases[11] = {8b000000, 8b11110, 8b111000, 8b1010110};// ADD test case
     testcases[10] = {8b000001, 8b11110, 8b111000, 8b11100110};// SUB test case
     testcases[9] = {8b011000, 8b11110, 8b111000, 8b11000};   // AND test case

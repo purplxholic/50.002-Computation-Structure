@@ -17,13 +17,15 @@ module tester_7 (
   
   reg [29:0] M_counter_d, M_counter_q = 1'h0;
   
-  reg [383:0] testcases;
+  reg [447:0] testcases;
   
   reg [3:0] n;
   
   always @* begin
     M_counter_d = M_counter_q;
     
+    testcases[416+31-:32] = 32'h40040202;
+    testcases[384+31-:32] = 32'h4205020a;
     testcases[352+31-:32] = 32'h001e3856;
     testcases[320+31-:32] = 32'h011e38e6;
     testcases[288+31-:32] = 32'h181e3818;

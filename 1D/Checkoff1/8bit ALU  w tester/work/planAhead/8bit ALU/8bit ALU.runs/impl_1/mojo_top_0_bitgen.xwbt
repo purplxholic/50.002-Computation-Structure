@@ -1,8 +1,8 @@
 INTSTYLE=pa
-INFILE=D:\SUTD\Sophomore\Computational_Structures\mojo\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1\mojo_top_0_routed.ncd
-OUTFILE=D:\SUTD\Sophomore\Computational_Structures\mojo\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1\mojo_top_0.bit
+INFILE=C:\Users\Aftershock PC\Desktop\Github\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1\mojo_top_0_routed.ncd
+OUTFILE=C:\Users\Aftershock PC\Desktop\Github\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1\mojo_top_0.bit
 FAMILY=Spartan6
 PART=xc6slx9-2tqg144
-WORKINGDIR=D:\SUTD\Sophomore\Computational_Structures\mojo\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1
+WORKINGDIR=C:\Users\Aftershock PC\Desktop\Github\50.002-Computation-Structure\1D\Checkoff1\8bit ALU  w tester\work\planAhead\8bit ALU\8bit ALU.runs\impl_1
 LICENSE=WebPack
 USER_INFO=211250107_0_0_171

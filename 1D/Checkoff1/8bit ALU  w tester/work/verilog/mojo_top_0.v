@@ -145,18 +145,21 @@ module mojo_top_0 (
       M_mult_alufn1 = M_tst_alufn[1+0-:1];
       result = 8'h00;
       
-      case (M_tst_alufn[4+1-:2])
-        2'h0: begin
+      case (M_tst_alufn[4+2-:3])
+        3'h0: begin
           result = M_add_op;
         end
-        2'h1: begin
+        3'h1: begin
           result = M_boole_op;
         end
-        2'h2: begin
+        3'h2: begin
           result = M_shift_op;
         end
-        2'h3: begin
+        3'h3: begin
           result = M_cmp_op;
+        end
+        3'h4: begin
+          result = M_mult_op;
         end
       endcase
       io_led[0+7-:8] = result;
