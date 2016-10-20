@@ -181,6 +181,8 @@ NET "io_dip[0]" PULLDOWN;
 # Constraints from file : 'mojo.ucf'
 ####################################################################################
 
+CONFIG VCCAUX  = 3.3;
+
 
 NET "clk" LOC = P56;
 NET "clk" IOSTANDARD = LVTTL;

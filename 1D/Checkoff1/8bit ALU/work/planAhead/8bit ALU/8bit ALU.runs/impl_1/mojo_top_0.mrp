@@ -8,7 +8,7 @@ Target Device  : xc6slx9
 Target Package : tqg144
 Target Speed   : -2
 Mapper Version : spartan6 -- $Revision: 1.55 $
-Mapped Date    : Wed Oct 19 14:35:27 2016
+Mapped Date    : Thu Oct 20 21:49:04 2016
 
 Design Summary
 --------------
@@ -16,21 +16,21 @@ Number of errors:      0
 Number of warnings:    6
 Slice Logic Utilization:
   Number of Slice Registers:                     0 out of  11,440    0%
-  Number of Slice LUTs:                         65 out of   5,720    1%
-    Number used as logic:                       65 out of   5,720    1%
-      Number using O6 output only:              56
+  Number of Slice LUTs:                         75 out of   5,720    1%
+    Number used as logic:                       75 out of   5,720    1%
+      Number using O6 output only:              66
       Number using O5 output only:               0
       Number using O5 and O6:                    9
       Number used as ROM:                        0
     Number used as Memory:                       0 out of   1,440    0%
 
 Slice Logic Distribution:
-  Number of occupied Slices:                    27 out of   1,430    1%
+  Number of occupied Slices:                    29 out of   1,430    2%
   Number of MUXCYs used:                         8 out of   2,860    1%
-  Number of LUT Flip Flop pairs used:           65
-    Number with an unused Flip Flop:            65 out of      65  100%
-    Number with an unused LUT:                   0 out of      65    0%
-    Number of fully used LUT-FF pairs:           0 out of      65    0%
+  Number of LUT Flip Flop pairs used:           75
+    Number with an unused Flip Flop:            75 out of      75  100%
+    Number with an unused LUT:                   0 out of      75    0%
+    Number of fully used LUT-FF pairs:           0 out of      75    0%
     Number of slice register sites lost
       to control set restrictions:               0 out of  11,440    0%
 
@@ -58,7 +58,7 @@ Specific Feature Utilization:
   Number of BUFHs:                               0 out of     128    0%
   Number of BUFPLLs:                             0 out of       8    0%
   Number of BUFPLL_MCBs:                         0 out of       4    0%
-  Number of DSP48A1s:                            0 out of      16    0%
+  Number of DSP48A1s:                            1 out of      16    6%
   Number of ICAPs:                               0 out of       1    0%
   Number of MCBs:                                0 out of       2    0%
   Number of PCILOGICSEs:                         0 out of       2    0%
@@ -67,9 +67,9 @@ Specific Feature Utilization:
   Number of STARTUPs:                            0 out of       1    0%
   Number of SUSPEND_SYNCs:                       0 out of       1    0%
 
-Average Fanout of Non-Clock Nets:                3.19
+Average Fanout of Non-Clock Nets:                3.41
 
-Peak Memory Usage:  342 MB
+Peak Memory Usage:  372 MB
 Total REAL time to MAP completion:  3 secs 
 Total CPU time to MAP completion (all processors):   3 secs 
 
@@ -113,13 +113,13 @@ INFO:Map:284 - Map is running with the multi-threading option on. Map currently
    supports the use of up to 2 processors. Based on the the user options and
    machine load, Map will use 2 processors during this run.
 INFO:LIT:243 - Logical network rst_n_IBUF has no load.
-INFO:LIT:395 - The above info message is repeated 14 more times for the
+INFO:LIT:395 - The above info message is repeated 13 more times for the
    following (max. 5 shown):
    avr_rx_busy_IBUF,
    io_dip(23)_IBUF,
-   io_dip(22)_IBUF,
    spi_mosi_IBUF,
-   spi_ss_IBUF
+   spi_ss_IBUF,
+   spi_sck_IBUF
    To see the details of these info messages, please use the -detail switch.
 INFO:MapLib:562 - No environment variables are currently set.
 INFO:LIT:244 - All of the single ended outputs in this design are using slew
@@ -136,7 +136,7 @@ INFO:Pack:1650 - Map created a placed design.
 Section 4 - Removed Logic Summary
 ---------------------------------
   12 block(s) removed
-   2 block(s) optimized away
+   4 block(s) optimized away
    6 signal(s) removed
 
 Section 5 - Removed Logic
@@ -170,6 +170,8 @@ Optimized Block(s):
 TYPE 		BLOCK
 GND 		XST_GND
 VCC 		XST_VCC
+VCC 		mult/CC
+GND 		mult/ND
 
 Section 6 - IOB Properties
 --------------------------
@@ -187,7 +189,6 @@ Section 6 - IOB Properties
 | io_button(2)                       | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_button(3)                       | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_button(4)                       | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
-| io_dip(22)                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_dip(23)                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_dip[0]                          | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_dip[1]                          | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
@@ -211,6 +212,7 @@ Section 6 - IOB Properties
 | io_dip[19]                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_dip[20]                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_dip[21]                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
+| io_dip[22]                         | IOB              | INPUT     | LVTTL                |       |          |      |              | PULLDOWN |          |
 | io_led[0]                          | IOB              | OUTPUT    | LVTTL                |       | 12       | SLOW |              |          |          |
 | io_led[1]                          | IOB              | OUTPUT    | LVTTL                |       | 12       | SLOW |              |          |          |
 | io_led[2]                          | IOB              | OUTPUT    | LVTTL                |       | 12       | SLOW |              |          |          |

@@ -1,13 +1,13 @@
-set projDir "C:/Users/1001853/Documents/mojo/8bit ALU/work/planAhead"
+set projDir "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/planAhead"
 set projName "8bit ALU"
 set topName top
 set device xc6slx9-2tqg144
 if {[file exists "$projDir/$projName"]} { file delete -force "$projDir/$projName" }
 create_project $projName "$projDir/$projName" -part $device
 set_property design_mode RTL [get_filesets sources_1]
-set verilogSources [list "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/mojo_top_0.v" "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/reset_conditioner_1.v" "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/adder_2.v" "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/comparer_3.v" "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/shifter_4.v" "C:/Users/1001853/Documents/mojo/8bit ALU/work/verilog/boolean_5.v"]
+set verilogSources [list "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/mojo_top_0.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/reset_conditioner_1.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/adder_2.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/comparer_3.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/shifter_4.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/boolean_5.v" "D:/SUTD/Sophomore/Computational_Structures/mojo/50.002-Computation-Structure/1D/Checkoff1/8bit ALU/work/verilog/multiply_6.v"]
 import_files -fileset [get_filesets sources_1] -force -norecurse $verilogSources
-set ucfSources [list  "C:/Program\ Files/Mojo\ IDE/library/components/io_shield.ucf" "C:/Program\ Files/Mojo\ IDE/library/components/mojo.ucf"]
+set ucfSources [list  "D:/Programs/Mojo\ IDE/library/components/io_shield.ucf" "D:/Programs/Mojo\ IDE/library/components/mojo.ucf"]
 import_files -fileset [get_filesets constrs_1] -force -norecurse $ucfSources
 set_property -name {steps.bitgen.args.More Options} -value {-g Binary:Yes -g Compress} -objects [get_runs impl_1]
 set_property steps.map.args.mt on [get_runs impl_1]

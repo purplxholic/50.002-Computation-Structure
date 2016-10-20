@@ -1,0 +1,20 @@
+module multiply (
+    // outputs alufn, a, b and expected output during testing
+    input a[8],
+    input b[8],
+    input alufn1,
+    output op[8]
+  ) {  
+  sig tmpmult[16];
+
+ always {
+  
+  if (alufn1) {
+    tmpmult=a*b;
+  }
+  else{
+    tmpmult = a/b;
+  }
+  op = tmpmult[7:0];
+  }
+}

@@ -8,7 +8,7 @@ module tester (
     output exp[8]
   ) {
   
-  dff counter[30](.clk(clk), .rst(rst));
+  dff counter[30](.clk(clk), .rst(rst)); // clock input
   sig testcases[12][4][8];      // 12 test cases, each one is in the format {alufn(8bit), a(8bit), b(8bit), op(8bit)}
   sig n[4];
 

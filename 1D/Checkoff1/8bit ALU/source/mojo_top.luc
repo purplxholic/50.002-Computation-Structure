@@ -30,6 +30,7 @@ module mojo_top (
   comparer cmp;
   shifter shift;
   boolean boole;
+  multiply mult;
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
@@ -66,12 +67,17 @@ module mojo_top (
     boole.b = io_dip[0];
     boole.alufn = io_dip[2][3:0];
     
-    case(io_dip[2][5:4]) {
-      b00: io_led[0] = add.op;
-      b01: io_led[0] = boole.op;
-      b10: io_led[0] = shift.op;
-      b11: io_led[0] = cmp.op;
-    }
+    //multiply module inputs
+    mult.a = io_dip[1];
+    mult.b = io_dip[0];
+    mult.alufn1 = io_dip[2][1];
     
+    case(io_dip[2][6:4]) {
+      b000: io_led[0] = add.op;
+      b001: io_led[0] = boole.op;
+      b010: io_led[0] = shift.op;
+      b011: io_led[0] = cmp.op;
+      b100: io_led[0] = mult.op;
+    }
   }
 }

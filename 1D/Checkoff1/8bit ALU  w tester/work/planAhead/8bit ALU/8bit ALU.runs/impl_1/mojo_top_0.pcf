@@ -1,16 +1,9 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Wed Oct 19 17:31:30 2016
+// Written by: Map P.20131013 on Thu Oct 20 22:20:01 2016
 //! **************************************************************************
 
 SCHEMATIC START;
-COMP "led[1]" LOCATE = SITE "P133" LEVEL 1;
-COMP "io_led[1]" LOCATE = SITE "P98" LEVEL 1;
-COMP "led[2]" LOCATE = SITE "P132" LEVEL 1;
-COMP "io_led[2]" LOCATE = SITE "P94" LEVEL 1;
-COMP "spi_ss" LOCATE = SITE "P48" LEVEL 1;
-COMP "led[3]" LOCATE = SITE "P131" LEVEL 1;
-COMP "io_dip[0]" LOCATE = SITE "P120" LEVEL 1;
-COMP "io_led[3]" LOCATE = SITE "P95" LEVEL 1;
+CONFIG VCCAUX = "3.3";
 COMP "led[4]" LOCATE = SITE "P127" LEVEL 1;
 COMP "io_dip[1]" LOCATE = SITE "P121" LEVEL 1;
 COMP "avr_tx" LOCATE = SITE "P55" LEVEL 1;
@@ -32,7 +25,6 @@ COMP "io_led[9]" LOCATE = SITE "P85" LEVEL 1;
 COMP "io_dip[7]" LOCATE = SITE "P115" LEVEL 1;
 COMP "io_dip[8]" LOCATE = SITE "P112" LEVEL 1;
 COMP "io_dip[9]" LOCATE = SITE "P111" LEVEL 1;
-COMP "io_dip(22)" LOCATE = SITE "P58" LEVEL 1;
 COMP "cclk" LOCATE = SITE "P70" LEVEL 1;
 COMP "io_seg[0]" LOCATE = SITE "P5" LEVEL 1;
 COMP "spi_sck" LOCATE = SITE "P43" LEVEL 1;
@@ -74,6 +66,7 @@ COMP "io_dip[21]" LOCATE = SITE "P66" LEVEL 1;
 COMP "io_sel[1]" LOCATE = SITE "P10" LEVEL 1;
 COMP "io_led[19]" LOCATE = SITE "P21" LEVEL 1;
 COMP "io_dip[14]" LOCATE = SITE "P100" LEVEL 1;
+COMP "io_dip[22]" LOCATE = SITE "P58" LEVEL 1;
 COMP "io_sel[2]" LOCATE = SITE "P7" LEVEL 1;
 COMP "io_dip[15]" LOCATE = SITE "P99" LEVEL 1;
 COMP "io_dip[23]" LOCATE = SITE "P57" LEVEL 1;
@@ -84,6 +77,14 @@ COMP "io_dip[18]" LOCATE = SITE "P75" LEVEL 1;
 COMP "io_dip[19]" LOCATE = SITE "P74" LEVEL 1;
 COMP "led[0]" LOCATE = SITE "P134" LEVEL 1;
 COMP "io_led[0]" LOCATE = SITE "P97" LEVEL 1;
+COMP "led[1]" LOCATE = SITE "P133" LEVEL 1;
+COMP "io_led[1]" LOCATE = SITE "P98" LEVEL 1;
+COMP "led[2]" LOCATE = SITE "P132" LEVEL 1;
+COMP "io_led[2]" LOCATE = SITE "P94" LEVEL 1;
+COMP "spi_ss" LOCATE = SITE "P48" LEVEL 1;
+COMP "led[3]" LOCATE = SITE "P131" LEVEL 1;
+COMP "io_dip[0]" LOCATE = SITE "P120" LEVEL 1;
+COMP "io_led[3]" LOCATE = SITE "P95" LEVEL 1;
 TIMEGRP clk = BEL "clk_BUFGP/BUFG" BEL "reset_cond/M_stage_q_3" BEL
         "reset_cond/M_stage_q_2" BEL "reset_cond/M_stage_q_1" BEL
         "reset_cond/M_stage_q_0" BEL "tst/M_counter_q_29" BEL
