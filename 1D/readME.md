@@ -2,4 +2,4 @@
 
 All codes used will be here.
 
-Group 3: Zanette Cheng, Teo Si-yan, Jway Jin Jun 
+Group 3 & Collaborators access: Zanette Cheng, Teo Si-yan, Jway Jin Jun 
