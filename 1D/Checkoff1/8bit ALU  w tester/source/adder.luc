@@ -13,7 +13,7 @@ module adder (
   sig xb7;
   // merged the multiply with the adder as in lab3
   always {
-    if (alufn0==1 &alufn1==0) {
+    if (alufn0==1) {
       tmpsum = a-b;
     }
     else if (alufn0==0 &alufn1==1){

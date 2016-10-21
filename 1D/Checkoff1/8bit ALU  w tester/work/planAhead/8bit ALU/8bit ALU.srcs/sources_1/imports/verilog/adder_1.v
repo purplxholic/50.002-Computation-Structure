@@ -22,7 +22,7 @@ module adder_1 (
   reg xb7;
   
   always @* begin
-    if (alufn0 == 1'h1 & alufn1 == 1'h0) begin
+    if (alufn0 == 1'h1) begin
       tmpsum = a - b;
     end else begin
       if (alufn0 == 1'h0 & alufn1 == 1'h1) begin
