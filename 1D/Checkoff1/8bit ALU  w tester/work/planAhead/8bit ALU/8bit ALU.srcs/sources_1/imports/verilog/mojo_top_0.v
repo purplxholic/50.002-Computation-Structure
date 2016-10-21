@@ -37,10 +37,12 @@ module mojo_top_0 (
   reg [8-1:0] M_add_a;
   reg [8-1:0] M_add_b;
   reg [1-1:0] M_add_alufn0;
+  reg [1-1:0] M_add_alufn1;
   adder_1 add (
     .a(M_add_a),
     .b(M_add_b),
     .alufn0(M_add_alufn0),
+    .alufn1(M_add_alufn1),
     .op(M_add_op),
     .z(M_add_z),
     .v(M_add_v),
@@ -84,20 +86,9 @@ module mojo_top_0 (
     .op(M_boole_op)
   );
   
-  wire [8-1:0] M_mult_op;
-  reg [8-1:0] M_mult_a;
-  reg [8-1:0] M_mult_b;
-  reg [1-1:0] M_mult_alufn1;
-  multiply_5 mult (
-    .a(M_mult_a),
-    .b(M_mult_b),
-    .alufn1(M_mult_alufn1),
-    .op(M_mult_op)
-  );
-  
   wire [1-1:0] M_reset_cond_out;
   reg [1-1:0] M_reset_cond_in;
-  reset_conditioner_6 reset_cond (
+  reset_conditioner_5 reset_cond (
     .clk(clk),
     .in(M_reset_cond_in),
     .out(M_reset_cond_out)
@@ -106,7 +97,7 @@ module mojo_top_0 (
   wire [8-1:0] M_tst_a;
   wire [8-1:0] M_tst_b;
   wire [8-1:0] M_tst_exp;
-  tester_7 tst (
+  tester_6 tst (
     .clk(clk),
     .rst(rst),
     .alufn(M_tst_alufn),
@@ -129,6 +120,7 @@ module mojo_top_0 (
       M_add_a = M_tst_a;
       M_add_b = M_tst_b;
       M_add_alufn0 = M_tst_alufn[0+0-:1];
+      M_add_alufn1 = M_tst_alufn[1+0-:1];
       M_cmp_z = M_add_z;
       M_cmp_v = M_add_v;
       M_cmp_n = M_add_n;
@@ -140,26 +132,20 @@ module mojo_top_0 (
       M_boole_a = M_tst_a;
       M_boole_b = M_tst_b;
       M_boole_alufn = M_tst_alufn[0+3-:4];
-      M_mult_a = M_tst_a;
-      M_mult_b = M_tst_b;
-      M_mult_alufn1 = M_tst_alufn[1+0-:1];
       result = 8'h00;
       
-      case (M_tst_alufn[4+2-:3])
-        3'h0: begin
+      case (M_tst_alufn[4+1-:2])
+        2'h0: begin
           result = M_add_op;
         end
-        3'h1: begin
+        2'h1: begin
           result = M_boole_op;
         end
-        3'h2: begin
+        2'h2: begin
           result = M_shift_op;
         end
-        3'h3: begin
+        2'h3: begin
           result = M_cmp_op;
-        end
-        3'h4: begin
-          result = M_mult_op;
         end
       endcase
       io_led[0+7-:8] = result;
@@ -170,6 +156,7 @@ module mojo_top_0 (
       M_add_a = io_dip[8+7-:8];
       M_add_b = io_dip[0+7-:8];
       M_add_alufn0 = io_dip[16+0+0-:1];
+      M_add_alufn1 = io_dip[16+1+0-:1];
       M_cmp_z = M_add_z;
       M_cmp_v = M_add_v;
       M_cmp_n = M_add_n;
@@ -181,25 +168,19 @@ module mojo_top_0 (
       M_boole_a = io_dip[8+7-:8];
       M_boole_b = io_dip[0+7-:8];
       M_boole_alufn = io_dip[16+0+3-:4];
-      M_mult_a = io_dip[8+7-:8];
-      M_mult_b = io_dip[0+7-:8];
-      M_mult_alufn1 = io_dip[16+1+0-:1];
       
-      case (io_dip[16+4+2-:3])
-        3'h0: begin
+      case (io_dip[16+4+1-:2])
+        2'h0: begin
           io_led[0+7-:8] = M_add_op;
         end
-        3'h1: begin
+        2'h1: begin
           io_led[0+7-:8] = M_boole_op;
         end
-        3'h2: begin
+        2'h2: begin
           io_led[0+7-:8] = M_shift_op;
         end
-        3'h3: begin
+        2'h3: begin
           io_led[0+7-:8] = M_cmp_op;
-        end
-        3'h4: begin
-          io_led[0+7-:8] = M_mult_op;
         end
       endcase
     end

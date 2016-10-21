@@ -8,6 +8,7 @@ module adder_1 (
     input [7:0] a,
     input [7:0] b,
     input alufn0,
+    input alufn1,
     output reg [7:0] op,
     output reg z,
     output reg v,
@@ -21,10 +22,14 @@ module adder_1 (
   reg xb7;
   
   always @* begin
-    if (alufn0) begin
+    if (alufn0 == 1'h1 & alufn1 == 1'h0) begin
       tmpsum = a - b;
     end else begin
-      tmpsum = a + b;
+      if (alufn0 == 1'h0 & alufn1 == 1'h1) begin
+        tmpsum = a * b;
+      end else begin
+        tmpsum = a + b;
+      end
     end
     xb7 = (alufn0 ^ b[7+0-:1]);
     op = tmpsum;

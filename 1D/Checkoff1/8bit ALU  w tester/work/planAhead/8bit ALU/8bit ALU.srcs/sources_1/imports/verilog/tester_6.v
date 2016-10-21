@@ -4,7 +4,7 @@
    This is a temporary file and any changes made to it will be destroyed.
 */
 
-module tester_7 (
+module tester_6 (
     input clk,
     input rst,
     output reg [7:0] alufn,
@@ -24,8 +24,7 @@ module tester_7 (
   always @* begin
     M_counter_d = M_counter_q;
     
-    testcases[416+31-:32] = 32'h40040202;
-    testcases[384+31-:32] = 32'h4205020a;
+    testcases[384+31-:32] = 32'h0205020a;
     testcases[352+31-:32] = 32'h001e3856;
     testcases[320+31-:32] = 32'h011e38e6;
     testcases[288+31-:32] = 32'h181e3818;
