@@ -1,6 +1,6 @@
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
-.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab3checkoff_10.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/2dcheckoff_100.jsim"
 
 .subckt FA a b ci s co
 Xxor1 a b 1 xor2
