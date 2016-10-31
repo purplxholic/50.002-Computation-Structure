@@ -1,0 +1,36 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab3checkoff_10.jsim"
+
+.subckt FA a b ci s co
+Xxor1 a b 1 xor2
+Xxor2 1 ci s xor2
+Xand11 b a 2 nand2
+Xand22 a ci 3 nand2
+Xand33 b ci 4 nand2
+Xand44 2 3 4 co nand3
+.ends
+
+*32-bit
+.subckt adder32 ALUFN0 a[31:0] b[31:0] s[31:0] z v n 
+Xnor b[31:0] ALUFN0#32 XB[31:0] xor2
+*adder0 is for the overspill of bits 
+*XB is the output of the xor gate
+Xadder0 a0 XB0 ALUFN0 s0 c0 FA
+Xadderall a[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+
+*for z
+*to get true with 0 , use nor2 but standard cell does nt have 32 input nor. so break down using or 
+Xor0 s[0:7] s[8:15] s[16:23] s[24:31] o[0:7] or4
+Xor1 o[0:1] o[2:3] o[4:5] o[6:7] output[0:1] or4
+Xor2 output0 output1 z nor2
+
+*for v - according to the boolean equation 
+X1 s31 out1 inverter 
+X2 a31 out2 inverter 
+X3 XB31 out3 inverter 
+X4 out2 out3 s31 out4 and3
+X5 a31 XB31 out1 out5 and3
+X6 out4 out5 v or2
+.connect n s31
+.ends
