@@ -1,6 +1,6 @@
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
-.include "C:/Users/The Gt Zan/Documents/jsim/50002/2dcheckoff_100.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_100ns.jsim"
 
 .subckt FA a b ci s co
 Xxor1 a b 1 xor2
@@ -12,12 +12,28 @@ Xand44 2 3 4 co nand3
 .ends
 
 *32-bit
-.subckt adder32 ALUFN0 a[31:0] b[31:0] s[31:0] z v n 
-Xnor b[31:0] ALUFN0#32 XB[31:0] xor2
+.subckt adder32 op0 ALUFN0 A[31:0] B[31:0] s[31:0] z v n 
+*select add or minus 
+Xaddorminus op0 A[31:0] B[31:0] firstoutput[31:0] mux2 
+
+
+*Xnor B[31:0] ALUFN0#32 XB[31:0] xor2
+
+*replace xor 
+Xnandor1 B[31:0] ALUFN0#32 btn1[31:0] nand2
+Xnandor2 B[31:0] btn1[31:0]  btn2[31:0]  nand2
+Xnandor3 ALUFN0#32 btn1[31:0]  btn3[31:0]  nand2
+Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
+*end of replacing 
+
+
 *adder0 is for the overspill of bits 
 *XB is the output of the xor gate
-Xadder0 a0 XB0 ALUFN0 s0 c0 FA
-Xadderall a[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+Xadder0 A0 XB0 ALUFN0 s0 c0 FA
+Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+
+
+
 
 *for z
 *to get true with 0 , use nor2 but standard cell does nt have 32 input nor. so break down using or 
@@ -27,10 +43,10 @@ Xor2 output0 output1 z nor2
 
 *for v - according to the boolean equation 
 X1 s31 out1 inverter 
-X2 a31 out2 inverter 
+X2 A31 out2 inverter 
 X3 XB31 out3 inverter 
 X4 out2 out3 s31 out4 and3
-X5 a31 XB31 out1 out5 and3
+X5 A31 XB31 out1 out5 and3
 X6 out4 out5 v or2
 .connect n s31
 .ends
