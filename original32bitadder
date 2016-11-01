@@ -2,58 +2,63 @@
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_6ns.jsim"
 
+.subckt XORr a b c
+XXOR0 a b 1 nand2
+XXOR1 a 1 3 nand2
+XXOR2 b 1 2 nand2
+XXOR3 2 3 4 nand2 
+.ends
+
+
+*possible to iron out more
+.subckt ANDd a b c 
+XAND0 a b 1 nand2
+XAND1 1 1 c nand2
+.ends 
+
+.subckt ORr a b c 
+XOR0 a a 1 nand2
+XOR1 b b 2 nand2
+XOR2 1 2 nand2
+.ends
+
 .subckt FA a b ci s finalp finalg
 
 *replace Xxor1 a b 1 xor2
-Xnand10 a b 1 nand2
-Xnand11 a 1 3 nand2
-Xnand12 b 1 2 nand2
-Xnand13 2 3 4 nand2 
-
+Xnand10 a b 4 XORr
 *replace Xxor2 1 ci s xor2
-Xnand20 4 ci 5 nand2
-Xnand21 4 5 6 nand2
-Xnand22 5 ci 7 nand2
-Xnand23 6 7 s nand2
-
+Xnand20 4 ci 5 XORr
 Xnand30 5 1 co nand2
-*keep below 
-*Xand11 b a 2 nand2
-*Xand22 a ci 3 nand2
-*Xand33 b ci 4 nand2
-*Xand44 2 3 4 co nand3
-
-*g 
-Xg a b final2 or2  
-
-*p 
-Xp a b firstp xor2
-Xp0 firstp finalp xor2 
-
-
-
 .ends
 
-.subckt FPG inputGJK inputGIJ inputPJK inputPIJ outputG outputP inputOldC outputOldC outputNewC 
-Xoutputp inputPJK inputPIJ outputP and2  
-Xoutputg inputPJK inputGIJ ghalf and2
-XoutputGJK ghalf inputGJK outputG or2 
+*https://www.researchgate.net/figure/281624258_fig6_Figure-7-The-8-bit-Kogge-Stone-adder-and-its-basic-blocks-a-block-diagram-b-red
+*for kogge-stone subckts 
+.subckt RED a b P G 
+Xgivep a b P XORr
+Xgiveg a b G ANDd 
+.ends
 
-.connect inputOldC outputOldC 
-Xc0 inputPIJ inputOldC chalf and2
-Xc1 inputGIJ chalf outputNewC or2 
+.subckt YELLOW Pi Gi Pp Gp P G 
+Xgivep Pi Pp P ANDd
+Xgiveg1 Pi Gp 1 ANDd
+Xgiveg2 1 Gi G ORr
+.ends
+
+.subckt GREEN Pi Gi 
+.connect Pi P 
+.connect Gi G
 .ends
 
 *32-bit
 .subckt adder32 op0 A[31:0] B[31:0] s[31:0] z v n 
 
-*Xnor B[31:0] op0#32 XB[31:0] xor2
+Xnor B[31:0] op0#32 XB[31:0] XORr
 
 *replace xor 
-Xnandor1 B[31:0] op0#32 btn1[31:0] nand2
-Xnandor2 B[31:0] btn1[31:0]  btn2[31:0]  nand2
-Xnandor3 op0#32 btn1[31:0]  btn3[31:0]  nand2
-Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
+*Xnandor1 B[31:0] op0#32 btn1[31:0] nand2
+*Xnandor2 B[31:0] btn1[31:0]  btn2[31:0]  nand2
+*Xnandor3 op0#32 btn1[31:0]  btn3[31:0]  nand2
+*Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
 *end of replacing 
 
 
@@ -62,51 +67,9 @@ Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
 *Xadder0 A0 XB0 op0 s0 c0 FA
 *ripple Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
 
-*carry ahead adder from handout 
-*top most layer
-Xlevel6supreme 
-
-Xlevel50 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel51 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-
-Xlevel40 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel41 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel42 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel43 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-
-
-Xlevel30 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel31 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel32 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel33 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel34 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel35 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel36 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-Xlevel37 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
-
-
-
-
-Xlevel20 g1 g0 p1 p0 gg01 pp01 c0 c0 c1 FPG
-Xlevel21 g3 g2  p3 p2 gg23 pp23 c2 c2 c3 FPG
-Xlevel22 g5 g4  p5 p4 gg45 pp45 c4 c4 c5 FPG  
-Xlevel23 g7 g6 p7 p6 gg67 pp67 c6 c6 c7 FPG 
-Xlevel24 g9 g8 p9 p8 gg89 pp89 c8 c8 c9 FPG 
-Xlevel25 g11 g10 p11 p10 gg1011 pp1011 c10 c10 c11 FPG 
-Xlevel26 g13 g12 p13 p12 gg45 pp1213 c12 c12 c13 FPG 
-Xlevel27 g15 g14 p15 p14 gg45 pp1415 c14 c14 c15 FPG 
-Xlevel28 g17 g16 p17 p16 gg45 pp1617 c16 c16 c17  FPG 
-Xlevel29 g19 g18 p19 p18 gg45 pp1819 c18 c18 c19 FPG 
-Xlevel210 g21 g20 p21 p20 gg45 pp2021 c20 c20 c21 FPG 
-Xlevel211 g23 g22 p23 p22 gg45 pp2223 c22 c22 c23 FPG 
-Xlevel212 g25 g24 p25 p24 gg45 pp2425 c24 c24 c25 FPG 
-Xlevel213 g27 g26 p27 p26 gg45 pp2627 c26 c26 c27 FPG 
-Xlevel214 g29 g28 p29 p28 gg45 pp2829 c28 c28 c29 FPG 
-Xlevel215 g31 g30 p31 p30 gg45 pp3031 c30 c30 c31 FPG 
-
-Xlevel1 A[31:0] B[31:0] C[31:0] S[31:0] p[31:0] g[31:0] FA
-
 *carry ahead kogge-stone adder 
+XL0 A[31:0] B[31:0] P[31:0] G[31:0] RED
+
 
 
 *for z
