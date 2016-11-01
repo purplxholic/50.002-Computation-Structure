@@ -1,35 +1,51 @@
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
-.include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_100ns.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_6ns.jsim"
 
 .subckt FA a b ci s co
-Xxor1 a b 1 xor2
-Xxor2 1 ci s xor2
-Xand11 b a 2 nand2
-Xand22 a ci 3 nand2
-Xand33 b ci 4 nand2
-Xand44 2 3 4 co nand3
+
+*replace Xxor1 a b 1 xor2
+Xnand10 a b 1 nand2
+Xnand11 a 1 3 nand2
+Xnand12 b 1 2 nand2
+Xnand13 2 3 4 nand2 
+
+*replace Xxor2 1 ci s xor2
+Xnand20 4 ci 5 nand2
+Xnand21 4 5 6 nand2
+Xnand22 5 ci 7 nand2
+Xnand23 6 7 s nand2
+
+Xnand30 5 1 co nand2
+*keep below 
+*Xand11 b a 2 nand2
+*Xand22 a ci 3 nand2
+*Xand33 b ci 4 nand2
+*Xand44 2 3 4 co nand3
+
+*full adder nand gate 
+
+
+
 .ends
 
+
 *32-bit
-.subckt adder32 op0 ALUFN0 A[31:0] B[31:0] s[31:0] z v n 
-*select add or minus 
-Xaddorminus op0 A[31:0] B[31:0] firstoutput[31:0] mux2 
+.subckt adder32 op0 A[31:0] B[31:0] s[31:0] z v n 
 
-
-*Xnor B[31:0] ALUFN0#32 XB[31:0] xor2
+*Xnor B[31:0] op0#32 XB[31:0] xor2
 
 *replace xor 
-Xnandor1 B[31:0] ALUFN0#32 btn1[31:0] nand2
+Xnandor1 B[31:0] op0#32 btn1[31:0] nand2
 Xnandor2 B[31:0] btn1[31:0]  btn2[31:0]  nand2
-Xnandor3 ALUFN0#32 btn1[31:0]  btn3[31:0]  nand2
+Xnandor3 op0#32 btn1[31:0]  btn3[31:0]  nand2
 Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
 *end of replacing 
 
 
 *adder0 is for the overspill of bits 
 *XB is the output of the xor gate
-Xadder0 A0 XB0 ALUFN0 s0 c0 FA
+Xadder0 A0 XB0 op0 s0 c0 FA
 Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
 
 
