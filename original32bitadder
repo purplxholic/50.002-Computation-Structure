@@ -2,7 +2,7 @@
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
 .include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_6ns.jsim"
 
-.subckt FA a b ci s co
+.subckt FA a b ci s finalp finalg
 
 *replace Xxor1 a b 1 xor2
 Xnand10 a b 1 nand2
@@ -23,12 +23,26 @@ Xnand30 5 1 co nand2
 *Xand33 b ci 4 nand2
 *Xand44 2 3 4 co nand3
 
-*full adder nand gate 
+*g 
+Xg a b final2 or2  
+
+*p 
+Xp a b firstp xor2
+Xp0 firstp finalp xor2 
 
 
 
 .ends
 
+.subckt FPG inputGJK inputGIJ inputPJK inputPIJ outputG outputP inputOldC outputOldC outputNewC 
+Xoutputp inputPJK inputPIJ outputP and2  
+Xoutputg inputPJK inputGIJ ghalf and2
+XoutputGJK ghalf inputGJK outputG or2 
+
+.connect inputOldC outputOldC 
+Xc0 inputPIJ inputOldC chalf and2
+Xc1 inputGIJ chalf outputNewC or2 
+.ends
 
 *32-bit
 .subckt adder32 op0 A[31:0] B[31:0] s[31:0] z v n 
@@ -45,10 +59,54 @@ Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
 
 *adder0 is for the overspill of bits 
 *XB is the output of the xor gate
-Xadder0 A0 XB0 op0 s0 c0 FA
-Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+*Xadder0 A0 XB0 op0 s0 c0 FA
+*ripple Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+
+*carry ahead adder from handout 
+*top most layer
+Xlevel6supreme 
+
+Xlevel50 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel51 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+
+Xlevel40 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel41 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel42 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel43 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
 
 
+Xlevel30 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel31 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel32 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel33 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel34 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel35 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel36 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+Xlevel37 g  g  p  p  gg  gg  pp  pp  c  c  c  FPG
+
+
+
+
+Xlevel20 g1 g0 p1 p0 gg01 pp01 c0 c0 c1 FPG
+Xlevel21 g3 g2  p3 p2 gg23 pp23 c2 c2 c3 FPG
+Xlevel22 g5 g4  p5 p4 gg45 pp45 c4 c4 c5 FPG  
+Xlevel23 g7 g6 p7 p6 gg67 pp67 c6 c6 c7 FPG 
+Xlevel24 g9 g8 p9 p8 gg89 pp89 c8 c8 c9 FPG 
+Xlevel25 g11 g10 p11 p10 gg1011 pp1011 c10 c10 c11 FPG 
+Xlevel26 g13 g12 p13 p12 gg45 pp1213 c12 c12 c13 FPG 
+Xlevel27 g15 g14 p15 p14 gg45 pp1415 c14 c14 c15 FPG 
+Xlevel28 g17 g16 p17 p16 gg45 pp1617 c16 c16 c17  FPG 
+Xlevel29 g19 g18 p19 p18 gg45 pp1819 c18 c18 c19 FPG 
+Xlevel210 g21 g20 p21 p20 gg45 pp2021 c20 c20 c21 FPG 
+Xlevel211 g23 g22 p23 p22 gg45 pp2223 c22 c22 c23 FPG 
+Xlevel212 g25 g24 p25 p24 gg45 pp2425 c24 c24 c25 FPG 
+Xlevel213 g27 g26 p27 p26 gg45 pp2627 c26 c26 c27 FPG 
+Xlevel214 g29 g28 p29 p28 gg45 pp2829 c28 c28 c29 FPG 
+Xlevel215 g31 g30 p31 p30 gg45 pp3031 c30 c30 c31 FPG 
+
+Xlevel1 A[31:0] B[31:0] C[31:0] S[31:0] p[31:0] g[31:0] FA
+
+*carry ahead kogge-stone adder 
 
 
 *for z
