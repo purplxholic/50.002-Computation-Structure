@@ -44,31 +44,36 @@ Xgiveg1 Pi Gp 1 ANDd
 Xgiveg2 1 Gi G ORr
 .ends
 
-.subckt GREEN Pi Gi 
+.subckt GREEN Pi Gi P G
 .connect Pi P 
 .connect Gi G
 .ends
 
 *32-bit
-.subckt adder32 op0 A[31:0] B[31:0] s[31:0] z v n 
+.subckt adder32 op0 A[31:0] B[31:0] S[31:0] z v n 
 
 Xnor B[31:0] op0#32 XB[31:0] XORr
 
-*replace xor 
-*Xnandor1 B[31:0] op0#32 btn1[31:0] nand2
-*Xnandor2 B[31:0] btn1[31:0]  btn2[31:0]  nand2
-*Xnandor3 op0#32 btn1[31:0]  btn3[31:0]  nand2
-*Xnandor4 btn2[31:0]  btn3[31:0] XB[31:0] nand2
-*end of replacing 
-
-
-*adder0 is for the overspill of bits 
-*XB is the output of the xor gate
-*Xadder0 A0 XB0 op0 s0 c0 FA
-*ripple Xadderall A[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
-
 *carry ahead kogge-stone adder 
 XL0 A[31:0] B[31:0] P[31:0] G[31:0] RED
+.connect P0 S0 
+XL11 P0 G0 pWait0 gWait0 GREEN
+XL12 P[31:1] G[31:1] P[30:0] G[30:0] plevelA[30:0] glevelA[30:0] YELLOW
+
+XL21 plevelA0  glevelA0 pWait1 gWait1 GREEN
+XL22 pWait0 gWait0 pWaitt0 gWaitt0 GREEN
+XL23 plevelA1 glevelA1 pWait0 gWait0 YELLOW
+XL24 plevelA[31:2] glevelA[31:2] plevelB[29:0] glevelB[29:0] YELLOW
+
+XL31 pWaitt0 gWaitt0 pWaittt0 gWaittt0 GREEN
+XL32 pWait1 gWait1 plevel2wait glevel2wait GREEN
+XL33 plevelB[1:0] glevelB[1:0] plevel3waiting[1:0] glevel3waiting[1:0] GREEN
+XL34 plevelB[30:2] glevelB[30:2] plevelC[27:0] glevelC[27:0] YELLOW
+
+XL41green pWaittt0 gWaitt0 plevel1wait4 glevel1wait4 GREEN
+XL42green plevel2wait glevel2wait plevel2wait4 glevel2wait4 GREEN
+XL43green plevel3waiting[1:0] glevel3waiting[1:0] plevel3waitingfour[1:0] glevel3waitingfour[1:0] GREEN
+XL4yellow plevelC[27:4] glevelC[27:4]  plevelD[23:0] glevelD[23:0] YELLOW
 
 
 
