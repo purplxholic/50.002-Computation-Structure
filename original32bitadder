@@ -1,1 +1,87 @@
-.include "C:/Program Files/50002/nominal.jsim".include "C:/Program Files/50002/stdcell.jsim".include "C:/Users/1001845/checkoff2d/checkoff2d/2dcheckoff_3ns.jsim".subckt XORr a b c*Tpd: 0.03ns * 3 = 0.09nsXXOR0 a b 1 nand2XXOR1 a 1 3 nand2XXOR2 b 1 2 nand2XXOR3 2 3 c nand2 .ends*possible to iron out more*tpd = 0.03 *2 = 0.06ns .subckt ANDd a b c XAND0 a b 1 nand2XAND1 1 1 c nand2.ends .subckt ORr a b c *tpd = 0.03 * 2 = 0.06XOR0 a a 1 nand2XOR1 b b 2 nand2XOR2 1 2 c nand2.ends*https://www.researchgate.net/figure/281624258_fig6_Figure-7-The-8-bit-Kogge-Stone-adder-and-its-basic-blocks-a-block-diagram-b-red*for kogge-stone subckts .subckt RED a b P G*tpd = XORr tpd = 0.09 Xgivep a b P XORrXgiveg a b G ANDd .ends.subckt YELLOW Pi Gi Pp Gp P G Xgivep Pi Pp P ANDdXgiveg1 Pi Gp 1 ANDdXgiveg2 1 Gi G ORr.ends.subckt GREEN Pi Gi P G.connect Pi P .connect Gi G.ends.subckt BLACK C P G tosum Xsum1 C P sum1 ANDdXsum2 sum1 G tosum ORr.ends*32-bit.subckt adder32 op0 A[31:0] B[31:0] S[31:0] z v n *need to connect because op0 IS ci from the original circuit .connect op0 ci*select add or minus *REMEMBER TO USE THE NEW ONE XB NOT B Xnor B[31:0] op0#32 XB[31:0] XORr*the new BLACK are the newly created ones *http://venividiwiki.ee.virginia.edu/mediawiki/index.php/File:8-bit_KSA.jpg*carry ahead kogge-stone adder *32 bits XLevel1 A[31:0] XB[31:0] P[31:0] G[31:0] REDXLevel1sum ci P0 S0 XORr*31 bitsXLevel2black ci P0 G0 tosum1 BLACKXLevel2 P[31:1] G[31:1] P[30:0] G[30:0] plevelA[30:0] glevelA[30:0] YELLOW XLevel2sum1 P1 tosum1 S1 XORr*has 2 black , 29 bits / 31bits XLevel3black1 ci plevelA0 glevelA0 tosum2 BLACKXLevel3black2 tosum1 plevelA1 glevelA1 tosum3 BLACKXLevel3sum2 P2 tosum2 S2 XORr  Xlevel3sum3 P3 tosum3 S3 XORrXLevel3first plevelA[30:2] glevelA[30:2] plevelA[28:0] glevelA[28:0] plevelB[28:0] glevelB[28:0] YELLOW*has 4 black , 25 bits of YELLOWXlevel4black ci plevelB0 glevelB0 tosum4 BLACKXlevel4blackothers tosum[3:1] plevelB[3:1] glevelB[3:1] tosum[7:5] BLACK*Xlevelsum4 P4 tosum4 S4 XORrXlevel4sumtothers P[7:4] tosum[7:4] S[7:4] XORrXlevel4 plevelB[28:4] glevelB[28:4] plevelB[24:0] glevelB[24:0] plevelC[24:0] glevelC[24:0] YELLOW *has 8 black / 17 bits of YELLOW Xlevel5black ci plevelC0 glevelC0 tosum8 BLACKXleve5otherblack tosum[7:1] plevelC[7:1] glevelC[7:1] tosum[15:9] BLACK*Xlevel5sum8 P8 tosum8 S8 XORrXlevel5sumothers P[15:8] tosum[15:8] S[15:8] XORrXlevel5 plevelC[24:8] glevelC[24:8] plevelC[16:0] glevelC[16:0] plevelD[16:0] glevelD[16:0] YELLOW*has 16 BLACK 1 bit because 16 becomes BLACK and 1 becomes YELLOW Xlevel6black ci plevelD0 glevelD0 tosum16 BLACKXlevel6blackothers tosum[15:1] plevelD[15:1] glevelD[15:1] tosum[31:17] BLACKXlevel6sumothers P[31:16] tosum[31:16] S[31:16] XORrXlevel6 glevelD0 plevelD16 1 ANDdXlevel61 1 glevelD16 2 ORrXlevel62 plevelD0 plevelD16 3 ANDdXlevel63 ci 3 4 ANDdXSUPREMELEADER 4 2 co ORr*for z*to get true with 0 , use nor2 but standard cell does nt have 32 input nor. so break down using or //32-input NOR Gate: input S[31:0]; output zXnor1 s[3:0] ax nor4//inp, inp, inp, inp; out; //This is the of NORs tree format; Its slow so use other formatXnor2 s[7:4] by nor4Xnor3 s[11:8] c nor4 Xnor4 s[15:12] d nor4Xnor5 s[19:16] e nor4Xnor6 s[23:20] f nor4Xnor7 s[27:24] g nor4Xnor8 s[31:28] h nor4**Xand1 ax by c d x and4 //inp, inp, inp, inp; out;Xand11 ax by c d x1 nand4Xand12 x1 x1 x1 x1 x nand4**Xand2 e f g h y and4Xand21 e f g h y1 nand4Xand22 y1 y1 y1 y1 y nand4**Xand3 x y z and2 //inp, inpt; out*/Xand31 x y z1 nand2Xand32 z1 z1 z nand2//negative check if S is negative (using buffer); input s[31]; output nXneg s[31] notn inverterXneg1 notn n inverter// overflow input : A[31] B[31] S[31]; output vXinvA A[31] Axinv[31] inverterXinvB Xb[31] Bxinv[31] inverterXinvS S[31] Sinv[31] inverter**Xv1 A[31] Xb[31] Sinv[31] v1 and3Xv11 A[31] Xb[31] Sinv[31] v11 nand3Xv12 v11 v11 v11 v1 nand3**Xv2 Axinv[31] Bxinv[31] s[31] v2 and3 Xv21 Axinv[31] Bxinv[31] s[31] v21 nand3Xv22 v21 v21 v21 v2 nand3**Xor v1 v2 v or2Xor1 v1 v1 5 nand2Xor2 v2 v2 6 nand2Xor3 5 6 v nand2.ends*there is slight delay at the further timings due to double flip flops hence the difference at around 280ns .plot L(xop0)
+.include "C:/Program Files/50002/nominal.jsim"
+.include "C:/Program Files/50002/stdcell.jsim"
+.include "C:/Users/1001845/checkoff2d/checkoff2d/2dcheckoff_3ns.jsim"
+.subckt XORr a b c
+*Tpd: 0.03ns * 3 = 0.09ns
+XXOR0 a b 1 nand2
+XXOR1 a 1 3 nand2
+XXOR2 b 1 2 nand2
+XXOR3 2 3 c nand2 
+.ends
+
+*possible to iron out more
+*tpd = 0.03 *2 = 0.06ns 
+
+.subckt ANDd a b c 
+XAND0 a b 1 nand2
+XAND1 1 1 c nand2
+.ends 
+.subckt ORr a b c 
+*tpd = 0.03 * 2 = 0.06
+XOR0 a a 1 nand2
+XOR1 b b 2 nand2
+XOR2 1 2 c nand2
+.ends
+*https://www.researchgate.net/figure/281624258_fig6_Figure-7-The-8-bit-Kogge-Stone-adder-and-its-basic-blocks-a-block-diagram-b-red
+*for kogge-stone subckts 
+.subckt RED a b P G
+*tpd = XORr tpd = 0.09 Xgivep a b P XORrXgiveg a b G ANDd 
+.ends
+.subckt YELLOW Pi Gi Pp Gp P G 
+Xgivep Pi Pp P ANDd
+Xgiveg1 Pi Gp 1 ANDd
+Xgiveg2 1 Gi G ORr
+.ends
+.subckt GREEN Pi Gi P G.connect Pi P .connect Gi G
+.ends.subckt BLACK C P G tosum Xsum1 C P sum1 ANDd
+Xsum2 sum1 G tosum ORr.ends
+*32-bit
+.subckt adder32 op0 A[31:0] B[31:0] S[31:0] z v n 
+*need to connect because op0 IS ci from the original circuit 
+.connect op0 ci*select add or minus 
+*REMEMBER TO USE THE NEW ONE XB NOT B 
+Xnor B[31:0] op0#32 XB[31:0] XORr
+*the new BLACK are the newly created ones 
+*http://venividiwiki.ee.virginia.edu/mediawiki/index.php/File:8-bit_KSA.jpg
+*carry ahead kogge-stone adder *32 bits 
+XLevel1 A[31:0] XB[31:0] P[31:0] G[31:0] RED
+XLevel1sum ci P0 S0 XORr
+*31 bitsXLevel2black ci P0 G0 tosum1 BLACK
+XLevel2 P[31:1] G[31:1] P[30:0] G[30:0] plevelA[30:0] glevelA[30:0] YELLOW 
+XLevel2sum1 P1 tosum1 S1 XORr
+*has 2 black , 29 bits / 31bits 
+XLevel3black1 ci plevelA0 glevelA0 tosum2 BLACK
+XLevel3black2 tosum1 plevelA1 glevelA1 tosum3 BLACK
+XLevel3sum2 P2 tosum2 S2 XORr  Xlevel3sum3 P3 tosum3 S3 XORr
+XLevel3first plevelA[30:2] glevelA[30:2] plevelA[28:0] glevelA[28:0] plevelB[28:0] glevelB[28:0] YELLOW
+*has 4 black , 25 bits of YELLOW
+Xlevel4black ci plevelB0 glevelB0 tosum4 BLACK
+Xlevel4blackothers tosum[3:1] plevelB[3:1] glevelB[3:1] tosum[7:5] BLACK
+*Xlevelsum4 P4 tosum4 S4 XORr
+Xlevel4sumtothers P[7:4] tosum[7:4] S[7:4] 
+XORrXlevel4 plevelB[28:4] glevelB[28:4] plevelB[24:0] glevelB[24:0] plevelC[24:0] glevelC[24:0] YELLOW 
+*has 8 black / 17 bits of YELLOW 
+Xlevel5black ci plevelC0 glevelC0 tosum8 BLACK
+Xleve5otherblack tosum[7:1] plevelC[7:1] glevelC[7:1] tosum[15:9] BLACK
+*Xlevel5sum8 P8 tosum8 S8 XORr
+Xlevel5sumothers P[15:8] tosum[15:8] S[15:8] XORr
+Xlevel5 plevelC[24:8] glevelC[24:8] plevelC[16:0] glevelC[16:0] plevelD[16:0] glevelD[16:0] YELLOW
+*has 16 BLACK 1 bit because 16 becomes BLACK and 1 becomes YELLOW 
+Xlevel6black ci plevelD0 glevelD0 tosum16 BLACK
+Xlevel6blackothers tosum[15:1] plevelD[15:1] glevelD[15:1] tosum[31:17] BLACK
+Xlevel6sumothers P[31:16] tosum[31:16] S[31:16] XORr
+Xlevel6 glevelD0 plevelD16 1 ANDdXlevel61 1 glevelD16 2 ORr
+Xlevel62 plevelD0 plevelD16 3 ANDdXlevel63 ci 3 4 ANDd
+XSUPREMELEADER 4 2 co ORr
+
+*for z
+*to get true with 0 , use nor2 but standard cell does nt have 32 input nor. so break down using or 
+//32-input NOR Gate: input S[31:0]; output zXnor1 s[3:0] ax nor4//inp, inp, inp, inp; out; //This is the of NORs tree format; Its slow so use other formatXnor2 s[7:4] by nor4Xnor3 s[11:8] c nor4 
+Xnor4 s[15:12] d nor4Xnor5 s[19:16] e nor4
+Xnor6 s[23:20] f nor4Xnor7 s[27:24] g nor4
+Xnor8 s[31:28] h nor4**Xand1 ax by c d x and4 //inp, inp, inp, inp; out;
+Xand11 ax by c d x1 nand4Xand12 x1 x1 x1 x1 x nand4
+**Xand2 e f g h y and4Xand21 e f g h y1 nand4Xand22 y1 y1 y1 y1 y nand4
+**Xand3 x y z and2 //inp, inpt; out*/Xand31 x y z1 nand2
+Xand32 z1 z1 z nand2//negative check if S is negative (using buffer); input s[31]; output n
+Xneg s[31] notn inverterXneg1 notn n inverter// overflow input : A[31] B[31] S[31]; output vXinvA A[31] Axinv[31] inverterXinvB Xb[31] Bxinv[31] inverterXinvS S[31] Sinv[31] inverter**Xv1 A[31] Xb[31] Sinv[31] v1 and3Xv11 A[31] Xb[31] Sinv[31] v11 nand3Xv12 v11 v11 v11 v1 nand3**Xv2 Axinv[31] Bxinv[31] s[31] v2 and3 Xv21 Axinv[31] Bxinv[31] s[31] v21 nand3Xv22 v21 v21 v21 v2 nand3**Xor v1 v2 v or2Xor1 v1 v1 5 nand2Xor2 v2 v2 6 nand2Xor3 5 6 v nand2.ends*there is slight delay at the further timings due to double flip flops hence the difference at around 280ns .plot L(xop0)
