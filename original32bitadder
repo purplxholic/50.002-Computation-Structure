@@ -39,9 +39,13 @@ Xgiveg a b G ANDd
 
 .subckt YELLOW Pi Gi Pp Gp P G
 *tpd 0.05 + 0.06 = 0.11ns
-Xgivep Pi Pp P ANDd
-Xgiveg1 Pi Gp 1 ANDd
-Xgiveg2 1 Gi G ORr
+Xinvert Gi invG inverter
+Xinvert1 Pp invP inverter
+Xgivep Pi invP Pwait nor2
+Xinvert4 Pwait P inverter
+Xgiveg1 Pi Gp 1 ORr
+Xgiveg2 1 invG Gwait nand2
+Xinvert2 Gwait G inverter
 .ends
 
 .subckt BLACK C P G tosum
@@ -56,11 +60,13 @@ Xblack3 invG 1 tosum nand2
 .subckt adder32 op0 A[31:0] B[31:0] S[31:0] z v n
 *need to connect because op0 IS ci from the original circuit
 Xbuff1 op0 ci buffer
+XinviB B[31:0] invB[31:0] inverter
+Xinput op0#32  B[31:0] invB[31:0] XB[31:0] mux2
 
 *select add or minus 
 *REMEMBER TO USE THE NEW ONE XB NOT B
-Xnor B[31:0] op0#32 XB[31:0] XORr
-
+*Xnor B[31:0] op0#32 XB[31:0] XORr
+*http://venividiwiki.ee.virginia.edu/mediawiki/index.php/File:8-bit_KSA.jpg
 
 *carry ahead kogge-stone adder
 *32 bits
@@ -114,6 +120,8 @@ Xlevel62 plevelD0 plevelD16 3 ANDd
 Xlevel63 ci 3 4 ANDd
 XSUPREMELEADER 4 2 co ORr 
 Xbuffer6 co c0 buffer
+
+
 
 
 *for z
