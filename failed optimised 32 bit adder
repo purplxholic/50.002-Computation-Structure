@@ -1,0 +1,171 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/checkoff2d/2dcheckoff_3ns.jsim"
+
+*buffer in place helps to increase the t rise and t fall 
+
+.subckt XORr a b c
+*Tpd: 0.03ns * 3 = 0.09ns
+XXOR0 a b 1 nand2
+XXOR1 a 1 3 nand2
+XXOR2 b 1 2 nand2
+XXOR3 2 3 c nand2
+.ends
+
+*possible to iron out more
+*tpd = 0.03 + 0.02 = 0.05ns 
+.subckt ANDd a b c
+XAND0 a b 1 nand2
+XAND1 1 c inverter_4
+.ends
+
+
+.subckt ORr a b c 
+*tpd = 0.03 * 2 = 0.06
+XOR0 a a 1 nand2
+XOR1 b b 2 nand2
+XOR2 1 2 c nand2
+.ends
+
+.subckt XNORr a b c
+Xxnor a ai inverter 
+Xxnor1 b bi inverter
+Xxnor2 bi ai abi ANDd
+Xxnor3 a b ab ANDd
+Xxnor4 ab ai c ORr
+.ends
+
+*https://www.researchgate.net/figure/281624258_fig6_Figure-7-The-8-bit-Kogge-Stone-adder-and-its-basic-blocks-a-block-diagram-b-red
+*for kogge-stone subckts
+.subckt RED a b P G
+*tpd = tpd of nor2 = 0.05ns
+Xgivep a b P XNORr
+Xgive a b G nand2
+.ends
+
+
+.subckt YELLOWONE BarPi Gi BarGp BarPp P BarG  
+*tpd 0.05 * 2 = 0.10ns  
+
+Xgiveg1 BarPi BarGp 1 nor2
+Xgivep 1 BarPp P nor2
+Xgiveg2 1 Gi BarG nor2
+.ends
+
+.subckt YELLOWTWO Pi BarGi Gp Pp BarP G 
+Xgivep2 Pi Pp BarP nand2
+Xgiveg12 Pi Gp 1 or2
+Xgiveg22 1 BarGi G nand2
+.ends
+
+.subckt BLACKONE C P BarGblack tosum
+*tpd = 0.03 + 0.02 + 0.03 = 0.08ns
+Xblack1 C P 1 nand2
+Xblack2 BarGblack 1 tosum nand2
+.ends
+
+.subckt BLACKTWO BarCblack BarPblack G Bartosum
+Xblack21 BarCblack BarPblack 1 nor2
+Xblack22 G 1 Bartosum nor2
+.ends
+
+*32-bit 
+.subckt adder32 op0 A[31:0] B[31:0] S[31:0] z v n
+*need to connect because op0 IS ci from the original circuit
+Xbuff1 op0 ci buffer
+XinviB B[31:0] iB[31:0] inverter_4
+Xinput op0#32 B[31:0] iB[31:0] XB[31:0] mux2
+*select add or minus 
+*REMEMBER TO USE THE NEW ONE XB NOT B
+*Xnor B[31:0] op0#32 XB[31:0] XORr
+
+
+*carry ahead kogge-stone adder
+*32 bits
+XLevel1 A[31:0] XB[31:0] BarP[31:0] BarG[31:0] RED
+XinverteveryP BarP[31:0] invP[31:0] inverter_4
+XLevel1sum ci invP0 stemp0 XORr
+Xbufferlevel1 stemp0 S0 buffer_8
+
+
+
+*31 bits of YELLOW 
+XLevel2black ci invP0 BarG0 tosum1 BLACKONE
+XLevel2FIX BarG[31:0] G[31:0] inverter_4
+XLevel2 BarP[31:1] G[31:1] BarP[30:0] BarG[30:0] plevelA[30:0] BarglevelA[30:0] YELLOWONE
+XLevel2sum1 invP1 tosum1 stemp1 XORr
+XLevel2buffer1 stemp1 S1 buffer_8
+
+*has 2 black , 29 bits of new YELLOW, total of 31bits
+XLevel3black1 ci plevelA0 BarglevelA0 tosum2 BLACKONE
+XLevel3black2 tosum1 plevelA1 BarglevelA1 tosum3 BLACKONE
+XLevel3sum2 invP2 tosum2 stemp2 XORr 
+XlLevel3buffer1 stemp2 S2 buffer
+Xlevel3sum3 invP3 tosum3 stemp3 XORr
+Xlevel3buffer2 stemp3 S3 buffer
+Xlevel3fixG BarglevelA[28:0] glevelA[28:0] inverter_4
+XLevel3first plevelA[30:2] BarglevelA[30:2] plevelA[28:0] glevelA[28:0] BarplevelB[28:0] glevelB[28:0] YELLOWTWO
+
+
+*has 4 black , 25 bits of YELLOW, total 29 bits
+XINVERTCI ci invci inverter_4
+Xlevel4black invci BarplevelB0 glevelB0 Bartosum4 BLACKTWO
+Xlevel4invertearliertosum tosum[3:1] Bartosum[3:1] inverter_4
+Xlevel4blackothers Bartosum[3:1] BarplevelB[3:1] glevelB[3:1] Bartosum[7:5] BLACKTWO
+Xlevel4invertcurrentosum Bartosum[7:4] tosum[7:4] inverter_4
+Xlevel4sumtothers invP[7:4] tosum[7:4] stemp[7:4] XORr
+Xlevel4buffer1 stemp[7:4] S[7:4] buffer
+Xlevel4invertG glevelB[24:0] BarglevelB[24:0] inverter_4
+Xlevel4 BarplevelB[28:4] glevelB[28:4] BarplevelB[24:0] BarglevelB[24:0] plevelC[24:0] BarglevelC[24:0] YELLOWONE
+
+
+*has 8 black / 17 bits of YELLOW
+Xlevel5black ci plevelC0 BarglevelC0 tosum8 BLACKONE
+Xleve5otherblack tosum[7:1] plevelC[7:1] BarglevelC[7:1] tosum[15:9] BLACKONE
+Xlevel5sumothers invP[15:8] tosum[15:8] stemp[15:8] XORr
+Xlevel5buffer stemp[15:8] S[15:8] buffer
+Xlevel5normalG BarglevelC[16:0] glevelC[16:0] inverter_4
+Xlevel5 plevelC[24:8] BarglevelC[24:8] plevelC[16:0] glevelC[16:0] BarplevelD[16:0] glevelD[16:0] YELLOWTWO
+
+
+*has 16 BLACK 1 bit because 16 becomes BLACK and 1 becomes YELLOW
+Xlevel6black invci BarplevelD0 glevelD0 Bartosum16 BLACKTWO
+Xlevel6invtosum tosum[15:8] Bartosum[15:8] inverter_4
+Xlevel6blackothers Bartosum[15:1] BarplevelD[15:1] glevelD[15:1] Bartosum[31:17] BLACKTWO
+Xlevel6InvertTosum Bartosum[31:16] tosum[31:16] inverter_4
+Xlevel6sumothers invP[31:16] tosum[31:16]  S31 ss[30:16] XORr
+Xbuff ss[30:16] S[30:16] buffer
+
+Xlevel6inverthatG glevelD0 BarglevelD0 inverter_4
+Xlevel6yellow BarplevelD16 glevelD16 BarplevelD0 BarglevelD0 supremeP BarsupremeG YELLOWONE
+
+Xlevel6SUPREMEBLACK ci supremeP BarsupremeG co BLACKONE
+
+Xbuffer6 co c0 buffer
+
+
+*for z
+
+*tpd = 0.08 + 0.12 +0.07 + 0.05 = 0.32ns 
+
+Xzbuff S[31:0] stry[31:0] buffer
+Xze1 stry[31:0] o[7:0] nor4
+Xze2 o[7:4] 9 nand4
+Xze3 o[3:0] 10 nand4
+Xze4 9 10 z nor2
+
+*tpd = 0
+.connect n S[31]
+
+*tpd = inv + nand3 + nand2 = 0.02 +0.05 + 0.03 = 0.10ns 
+XinvA A[31] Axinv[31] inverter_4
+XinvB XB[31] Bxinv[31] inverter_4
+XinvS S[31] Sinv[31] inverter_4
+Xv11 A[31] XB[31] Sinv[31] v11 nand3
+Xv21 Axinv[31] Bxinv[31] S[31] v21 nand3
+Xor3 v11 v21 v nand2
+
+.ends
+
+
+*there is slight delay at the further timings due to double flip flops hence the difference at around 280ns
