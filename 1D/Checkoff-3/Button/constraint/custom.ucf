@@ -1,0 +1,1 @@
+NET "button" LOC = P51 | IOSTANDARD = LVTTL | PULLUP; | "" is the name of the item , P51 is where the pin is at , pullup means want internal pull-up  
