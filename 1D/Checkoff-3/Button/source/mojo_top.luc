@@ -1,7 +1,7 @@
 module mojo_top (
     input clk,              // 50MHz clock
     input rst_n,            // reset button (active low)
-    output led [8],         // 8 user controllable LEDs
+    //output led [8],         // 8 user controllable LEDs
     input cclk,             // configuration clock, AVR ready when high
     output spi_miso,        // AVR SPI MISO
     input spi_ss,           // AVR SPI Slave Select
@@ -10,8 +10,14 @@ module mojo_top (
     output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
     input avr_tx,           // AVR TX (FPGA RX)
     output avr_rx,          // AVR RX (FPGA TX)
-    input avr_rx_busy,       // AVR RX buffer full
-    input button //the button 
+    input avr_rx_busy ,      // AVR RX buffer full
+     output io_seg [8],      // 7-segment LEDs on IO Shield
+    output io_led [3][8],   // LEDs on IO Shield
+    input io_button [5],    // 5 buttons on IO Shield
+    input io_dip [3][8],     // DIP switches on IO Shield  
+    output io_sel [4],      // Digit select on IO Shield  
+    input button
+   
   ) {
   
   sig rst;                  // reset signal
@@ -21,17 +27,30 @@ module mojo_top (
     // clock. This ensures the entire FPGA comes out of reset at the same time.
     reset_conditioner reset_cond;
     .rst(rst){
-      counter counter;
+       counter2 counter;
     }
   }
+
+seven_seg a;
+  
+
   
   always {
     reset_cond.in = ~rst_n; // input raw inverted reset signal
     rst = reset_cond.out;   // conditioned reset
     
-    led = counter.count;             // turn LEDs off when button is held 
-    counter.button = ~button; // make button active high
+   counter.button = ~button; // make button active high
+    //led = counter.count;co
+    a.char = counter.count[7:0];
+    io_led[0] = counter.count;
+    io_led[1] = b0;
+    io_led[2] = b0;
     
+    io_seg = ~a.segs;
+    io_sel = ~4h1;        // first digit only
+    
+    
+   
     spi_miso = bz;          // not using SPI
     spi_channel = bzzzz;    // not using flags
     avr_rx = bz;            // not using serial port
