@@ -1,0 +1,150 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Sat Dec 03 16:16:25 2016
+//! **************************************************************************
+
+SCHEMATIC START;
+CONFIG VCCAUX = "3.3";
+COMP "clk" LOCATE = SITE "P56" LEVEL 1;
+COMP "cube_col[0]" LOCATE = SITE "P51" LEVEL 1;
+COMP "cube_col[1]" LOCATE = SITE "P41" LEVEL 1;
+COMP "cube_col[2]" LOCATE = SITE "P35" LEVEL 1;
+COMP "cube_col[3]" LOCATE = SITE "P33" LEVEL 1;
+COMP "cube_col[4]" LOCATE = SITE "P30" LEVEL 1;
+COMP "cube_col[5]" LOCATE = SITE "P27" LEVEL 1;
+COMP "cube_col[6]" LOCATE = SITE "P24" LEVEL 1;
+COMP "cube_col[7]" LOCATE = SITE "P22" LEVEL 1;
+COMP "cube_col[8]" LOCATE = SITE "P50" LEVEL 1;
+COMP "cube_col[9]" LOCATE = SITE "P40" LEVEL 1;
+COMP "movebtn[0]" LOCATE = SITE "P121" LEVEL 1;
+COMP "movebtn[1]" LOCATE = SITE "P120" LEVEL 1;
+COMP "movebtn[2]" LOCATE = SITE "P119" LEVEL 1;
+COMP "movebtn[3]" LOCATE = SITE "P118" LEVEL 1;
+COMP "movebtn[4]" LOCATE = SITE "P117" LEVEL 1;
+COMP "movebtn[5]" LOCATE = SITE "P116" LEVEL 1;
+COMP "cube_col[10]" LOCATE = SITE "P34" LEVEL 1;
+COMP "cube_col[11]" LOCATE = SITE "P32" LEVEL 1;
+COMP "cube_col[12]" LOCATE = SITE "P29" LEVEL 1;
+COMP "cube_col[13]" LOCATE = SITE "P26" LEVEL 1;
+COMP "cube_col[14]" LOCATE = SITE "P23" LEVEL 1;
+COMP "cube_col[15]" LOCATE = SITE "P21" LEVEL 1;
+COMP "rst_n" LOCATE = SITE "P38" LEVEL 1;
+COMP "led[0]" LOCATE = SITE "P134" LEVEL 1;
+COMP "led[1]" LOCATE = SITE "P133" LEVEL 1;
+COMP "led[2]" LOCATE = SITE "P132" LEVEL 1;
+COMP "led[3]" LOCATE = SITE "P131" LEVEL 1;
+COMP "led[4]" LOCATE = SITE "P127" LEVEL 1;
+COMP "led[5]" LOCATE = SITE "P126" LEVEL 1;
+COMP "led[6]" LOCATE = SITE "P124" LEVEL 1;
+COMP "led[7]" LOCATE = SITE "P123" LEVEL 1;
+COMP "cube_level[0]" LOCATE = SITE "P10" LEVEL 1;
+COMP "cube_level[1]" LOCATE = SITE "P8" LEVEL 1;
+COMP "cube_level[2]" LOCATE = SITE "P6" LEVEL 1;
+COMP "cube_level[3]" LOCATE = SITE "P2" LEVEL 1;
+COMP "startbtn" LOCATE = SITE "P115" LEVEL 1;
+TIMEGRP clk = BEL "M_current_q_0" BEL "M_current_q_1" BEL "M_current_q_2" BEL
+        "M_current_q_3" BEL "M_current_q_4" BEL "M_current_q_5" BEL
+        "M_sm_q_FSM_FFd2" BEL "M_level_q_0" BEL "M_level_q_3" BEL
+        "M_sm_q_FSM_FFd1" BEL "M_level_q_1" BEL "M_level_q_2" BEL
+        "buttons/bw_edge/M_last_q" BEL "buttons/down_edge/M_last_q" BEL
+        "buttons/right_edge/M_last_q" BEL "buttons/start_edge/M_last_q" BEL
+        "buttons/fw_edge/M_last_q" BEL "buttons/up_edge/M_last_q" BEL
+        "buttons/left_edge/M_last_q" BEL "buttons/start_cond/M_ctr_q_19" BEL
+        "buttons/start_cond/M_ctr_q_18" BEL "buttons/start_cond/M_ctr_q_17"
+        BEL "buttons/start_cond/M_ctr_q_16" BEL
+        "buttons/start_cond/M_ctr_q_15" BEL "buttons/start_cond/M_ctr_q_14"
+        BEL "buttons/start_cond/M_ctr_q_13" BEL
+        "buttons/start_cond/M_ctr_q_12" BEL "buttons/start_cond/M_ctr_q_11"
+        BEL "buttons/start_cond/M_ctr_q_10" BEL "buttons/start_cond/M_ctr_q_9"
+        BEL "buttons/start_cond/M_ctr_q_8" BEL "buttons/start_cond/M_ctr_q_7"
+        BEL "buttons/start_cond/M_ctr_q_6" BEL "buttons/start_cond/M_ctr_q_5"
+        BEL "buttons/start_cond/M_ctr_q_4" BEL "buttons/start_cond/M_ctr_q_3"
+        BEL "buttons/start_cond/M_ctr_q_2" BEL "buttons/start_cond/M_ctr_q_1"
+        BEL "buttons/start_cond/M_ctr_q_0" BEL
+        "buttons/start_cond/sync/M_pipe_q_1" BEL
+        "buttons/start_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/fw_cond/M_ctr_q_19" BEL "buttons/fw_cond/M_ctr_q_18" BEL
+        "buttons/fw_cond/M_ctr_q_17" BEL "buttons/fw_cond/M_ctr_q_16" BEL
+        "buttons/fw_cond/M_ctr_q_15" BEL "buttons/fw_cond/M_ctr_q_14" BEL
+        "buttons/fw_cond/M_ctr_q_13" BEL "buttons/fw_cond/M_ctr_q_12" BEL
+        "buttons/fw_cond/M_ctr_q_11" BEL "buttons/fw_cond/M_ctr_q_10" BEL
+        "buttons/fw_cond/M_ctr_q_9" BEL "buttons/fw_cond/M_ctr_q_8" BEL
+        "buttons/fw_cond/M_ctr_q_7" BEL "buttons/fw_cond/M_ctr_q_6" BEL
+        "buttons/fw_cond/M_ctr_q_5" BEL "buttons/fw_cond/M_ctr_q_4" BEL
+        "buttons/fw_cond/M_ctr_q_3" BEL "buttons/fw_cond/M_ctr_q_2" BEL
+        "buttons/fw_cond/M_ctr_q_1" BEL "buttons/fw_cond/M_ctr_q_0" BEL
+        "buttons/fw_cond/sync/M_pipe_q_1" BEL
+        "buttons/fw_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/up_cond/M_ctr_q_19" BEL "buttons/up_cond/M_ctr_q_18" BEL
+        "buttons/up_cond/M_ctr_q_17" BEL "buttons/up_cond/M_ctr_q_16" BEL
+        "buttons/up_cond/M_ctr_q_15" BEL "buttons/up_cond/M_ctr_q_14" BEL
+        "buttons/up_cond/M_ctr_q_13" BEL "buttons/up_cond/M_ctr_q_12" BEL
+        "buttons/up_cond/M_ctr_q_11" BEL "buttons/up_cond/M_ctr_q_10" BEL
+        "buttons/up_cond/M_ctr_q_9" BEL "buttons/up_cond/M_ctr_q_8" BEL
+        "buttons/up_cond/M_ctr_q_7" BEL "buttons/up_cond/M_ctr_q_6" BEL
+        "buttons/up_cond/M_ctr_q_5" BEL "buttons/up_cond/M_ctr_q_4" BEL
+        "buttons/up_cond/M_ctr_q_3" BEL "buttons/up_cond/M_ctr_q_2" BEL
+        "buttons/up_cond/M_ctr_q_1" BEL "buttons/up_cond/M_ctr_q_0" BEL
+        "buttons/up_cond/sync/M_pipe_q_1" BEL
+        "buttons/up_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/left_cond/M_ctr_q_19" BEL "buttons/left_cond/M_ctr_q_18" BEL
+        "buttons/left_cond/M_ctr_q_17" BEL "buttons/left_cond/M_ctr_q_16" BEL
+        "buttons/left_cond/M_ctr_q_15" BEL "buttons/left_cond/M_ctr_q_14" BEL
+        "buttons/left_cond/M_ctr_q_13" BEL "buttons/left_cond/M_ctr_q_12" BEL
+        "buttons/left_cond/M_ctr_q_11" BEL "buttons/left_cond/M_ctr_q_10" BEL
+        "buttons/left_cond/M_ctr_q_9" BEL "buttons/left_cond/M_ctr_q_8" BEL
+        "buttons/left_cond/M_ctr_q_7" BEL "buttons/left_cond/M_ctr_q_6" BEL
+        "buttons/left_cond/M_ctr_q_5" BEL "buttons/left_cond/M_ctr_q_4" BEL
+        "buttons/left_cond/M_ctr_q_3" BEL "buttons/left_cond/M_ctr_q_2" BEL
+        "buttons/left_cond/M_ctr_q_1" BEL "buttons/left_cond/M_ctr_q_0" BEL
+        "buttons/left_cond/sync/M_pipe_q_1" BEL
+        "buttons/left_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/bw_cond/M_ctr_q_19" BEL "buttons/bw_cond/M_ctr_q_18" BEL
+        "buttons/bw_cond/M_ctr_q_17" BEL "buttons/bw_cond/M_ctr_q_16" BEL
+        "buttons/bw_cond/M_ctr_q_15" BEL "buttons/bw_cond/M_ctr_q_14" BEL
+        "buttons/bw_cond/M_ctr_q_13" BEL "buttons/bw_cond/M_ctr_q_12" BEL
+        "buttons/bw_cond/M_ctr_q_11" BEL "buttons/bw_cond/M_ctr_q_10" BEL
+        "buttons/bw_cond/M_ctr_q_9" BEL "buttons/bw_cond/M_ctr_q_8" BEL
+        "buttons/bw_cond/M_ctr_q_7" BEL "buttons/bw_cond/M_ctr_q_6" BEL
+        "buttons/bw_cond/M_ctr_q_5" BEL "buttons/bw_cond/M_ctr_q_4" BEL
+        "buttons/bw_cond/M_ctr_q_3" BEL "buttons/bw_cond/M_ctr_q_2" BEL
+        "buttons/bw_cond/M_ctr_q_1" BEL "buttons/bw_cond/M_ctr_q_0" BEL
+        "buttons/bw_cond/sync/M_pipe_q_1" BEL
+        "buttons/bw_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/down_cond/M_ctr_q_19" BEL "buttons/down_cond/M_ctr_q_18" BEL
+        "buttons/down_cond/M_ctr_q_17" BEL "buttons/down_cond/M_ctr_q_16" BEL
+        "buttons/down_cond/M_ctr_q_15" BEL "buttons/down_cond/M_ctr_q_14" BEL
+        "buttons/down_cond/M_ctr_q_13" BEL "buttons/down_cond/M_ctr_q_12" BEL
+        "buttons/down_cond/M_ctr_q_11" BEL "buttons/down_cond/M_ctr_q_10" BEL
+        "buttons/down_cond/M_ctr_q_9" BEL "buttons/down_cond/M_ctr_q_8" BEL
+        "buttons/down_cond/M_ctr_q_7" BEL "buttons/down_cond/M_ctr_q_6" BEL
+        "buttons/down_cond/M_ctr_q_5" BEL "buttons/down_cond/M_ctr_q_4" BEL
+        "buttons/down_cond/M_ctr_q_3" BEL "buttons/down_cond/M_ctr_q_2" BEL
+        "buttons/down_cond/M_ctr_q_1" BEL "buttons/down_cond/M_ctr_q_0" BEL
+        "buttons/down_cond/sync/M_pipe_q_1" BEL
+        "buttons/down_cond/sync/Mshreg_M_pipe_q_1" BEL
+        "buttons/right_cond/M_ctr_q_19" BEL "buttons/right_cond/M_ctr_q_18"
+        BEL "buttons/right_cond/M_ctr_q_17" BEL
+        "buttons/right_cond/M_ctr_q_16" BEL "buttons/right_cond/M_ctr_q_15"
+        BEL "buttons/right_cond/M_ctr_q_14" BEL
+        "buttons/right_cond/M_ctr_q_13" BEL "buttons/right_cond/M_ctr_q_12"
+        BEL "buttons/right_cond/M_ctr_q_11" BEL
+        "buttons/right_cond/M_ctr_q_10" BEL "buttons/right_cond/M_ctr_q_9" BEL
+        "buttons/right_cond/M_ctr_q_8" BEL "buttons/right_cond/M_ctr_q_7" BEL
+        "buttons/right_cond/M_ctr_q_6" BEL "buttons/right_cond/M_ctr_q_5" BEL
+        "buttons/right_cond/M_ctr_q_4" BEL "buttons/right_cond/M_ctr_q_3" BEL
+        "buttons/right_cond/M_ctr_q_2" BEL "buttons/right_cond/M_ctr_q_1" BEL
+        "buttons/right_cond/M_ctr_q_0" BEL
+        "buttons/right_cond/sync/M_pipe_q_1" BEL
+        "buttons/right_cond/sync/Mshreg_M_pipe_q_1" BEL "clk_BUFGP/BUFG" BEL
+        "reset_cond/M_stage_q_3" BEL "reset_cond/M_stage_q_2" BEL
+        "reset_cond/M_stage_q_1" BEL "reset_cond/M_stage_q_0" BEL
+        "cube/M_counter_q_15" BEL "cube/M_counter_q_14" BEL
+        "cube/M_counter_q_13" BEL "cube/M_counter_q_12" BEL
+        "cube/M_counter_q_11" BEL "cube/M_counter_q_10" BEL
+        "cube/M_counter_q_9" BEL "cube/M_counter_q_8" BEL "cube/M_counter_q_7"
+        BEL "cube/M_counter_q_6" BEL "cube/M_counter_q_5" BEL
+        "cube/M_counter_q_4" BEL "cube/M_counter_q_3" BEL "cube/M_counter_q_2"
+        BEL "cube/M_counter_q_1" BEL "cube/M_counter_q_0";
+TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
+SCHEMATIC END;
+

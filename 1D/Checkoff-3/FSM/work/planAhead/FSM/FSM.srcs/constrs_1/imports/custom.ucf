@@ -1,0 +1,31 @@
+NET "movebtn<0>" LOC = P121 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<1>" LOC = P120 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<2>" LOC = P119 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<3>" LOC = P118 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<4>" LOC = P117 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<5>" LOC = P116 | IOSTANDARD = LVTTL | PULLUP;
+NET "startbtn" LOC = P115 | IOSTANDARD = LVTTL | PULLUP;
+
+NET "cube_level<0>" LOC = P10 | IOSTANDARD = LVTTL;
+NET "cube_level<1>" LOC = P8 | IOSTANDARD = LVTTL;
+NET "cube_level<2>" LOC = P6 | IOSTANDARD = LVTTL;
+NET "cube_level<3>" LOC = P2 | IOSTANDARD = LVTTL;
+
+NET "cube_col<0>" LOC = P51 | IOSTANDARD = LVTTL;
+NET "cube_col<1>" LOC = P41 | IOSTANDARD = LVTTL;
+NET "cube_col<2>" LOC = P35 | IOSTANDARD = LVTTL;
+NET "cube_col<3>" LOC = P33 | IOSTANDARD = LVTTL;
+
+NET "cube_col<4>" LOC = P30 | IOSTANDARD = LVTTL;
+NET "cube_col<5>" LOC = P27 | IOSTANDARD = LVTTL;
+NET "cube_col<6>" LOC = P24 | IOSTANDARD = LVTTL;
+NET "cube_col<7>" LOC = P22 | IOSTANDARD = LVTTL;
+
+NET "cube_col<8>" LOC = P50 | IOSTANDARD = LVTTL;
+NET "cube_col<9>" LOC = P40 | IOSTANDARD = LVTTL;
+NET "cube_col<10>" LOC = P34 | IOSTANDARD = LVTTL;
+NET "cube_col<11>" LOC = P32 | IOSTANDARD = LVTTL;
+NET "cube_col<12>" LOC = P29| IOSTANDARD = LVTTL;
+NET "cube_col<13>" LOC = P26 | IOSTANDARD = LVTTL;
+NET "cube_col<14>" LOC = P23 | IOSTANDARD = LVTTL;
+NET "cube_col<15>" LOC = P21 | IOSTANDARD = LVTTL;
