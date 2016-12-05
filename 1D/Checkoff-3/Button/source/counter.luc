@@ -1,4 +1,4 @@
-module counter2 (
+module counter (
     input clk,       // clock
     input rst,       // reset
     input button,    // button input
