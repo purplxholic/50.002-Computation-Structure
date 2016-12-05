@@ -5,7 +5,7 @@ link: https://embeddedmicro.com/tutorials/lucid/external-io-tutorial
 Cube Multiplexer: Jin Juan Jway
 Buttons: Zanette Cheng 
 
-##Mojo projects
+##Mojo project
 
 ###Button
 Takes input from external button to increment a counter
