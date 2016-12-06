@@ -13,9 +13,10 @@ module mojo_top_0 (
     output reg avr_rx,
     input [5:0] movebtn,
     input startbtn,
-    output reg [23:0] io_led,
     output reg [3:0] cube_level,
-    output reg [15:0] cube_col
+    output reg [15:0] cube_col,
+    output reg [6:0] segment_part,
+    output reg [3:0] segment_LED
   );
   
   
@@ -55,6 +56,20 @@ module mojo_top_0 (
     .level(M_cube_level),
     .col(M_cube_col)
   );
+  wire [7-1:0] M_displaySegments_segs;
+  wire [4-1:0] M_displaySegments_segmentLED;
+  reg [3-1:0] M_displaySegments_state;
+  reg [4-1:0] M_displaySegments_score;
+  reg [4-1:0] M_displaySegments_level;
+  seven_seg_4 displaySegments (
+    .clk(clk),
+    .rst(rst),
+    .state(M_displaySegments_state),
+    .score(M_displaySegments_score),
+    .level(M_displaySegments_level),
+    .segs(M_displaySegments_segs),
+    .segmentLED(M_displaySegments_segmentLED)
+  );
   localparam CHOOSE_LVL_sm = 3'd0;
   localparam INIT_MAP_sm = 3'd1;
   localparam MOVE_sm = 3'd2;
@@ -76,12 +91,15 @@ module mojo_top_0 (
     avr_rx = 1'bz;
     M_buttons_movebtn = ~movebtn;
     M_buttons_start = ~startbtn;
-    io_led = 24'h000000;
-    io_led[16+7-:8] = M_level_q;
     M_cube_matrix = 64'h0000000000000000;
     M_cube_curr = M_current_q;
     cube_col = M_cube_col;
     cube_level = M_cube_level;
+    M_displaySegments_state = 3'h4;
+    M_displaySegments_score = 4'ha;
+    M_displaySegments_level = 2'h2;
+    segment_LED = M_displaySegments_segmentLED;
+    segment_part = M_displaySegments_segs;
     M_sm_d = M_sm_q;
     
     case (M_sm_q)

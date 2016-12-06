@@ -5,6 +5,7 @@ NET "movebtn<3>" LOC = P118 | IOSTANDARD = LVTTL | PULLUP;
 NET "movebtn<4>" LOC = P117 | IOSTANDARD = LVTTL | PULLUP;
 NET "movebtn<5>" LOC = P116 | IOSTANDARD = LVTTL | PULLUP;
 NET "startbtn" LOC = P115 | IOSTANDARD = LVTTL | PULLUP;
+NET "resetbtn" LOC = P114 | IOSTANDARD = LVTTL | PULLUP;
 
 NET "cube_level<0>" LOC = P10 | IOSTANDARD = LVTTL;
 NET "cube_level<1>" LOC = P8 | IOSTANDARD = LVTTL;
@@ -30,3 +31,16 @@ NET "cube_col<12>" LOC = P29| IOSTANDARD = LVTTL;
 NET "cube_col<13>" LOC = P26 | IOSTANDARD = LVTTL;
 NET "cube_col<14>" LOC = P23 | IOSTANDARD = LVTTL;
 NET "cube_col<15>" LOC = P21 | IOSTANDARD = LVTTL;
+
+NET "segment_part<0>" LOC = P105 | IOSTANDARD = LVTTL;
+NET "segment_part<1>" LOC = P104 | IOSTANDARD = LVTTL;
+NET "segment_part<2>" LOC = P102 | IOSTANDARD = LVTTL;
+NET "segment_part<3>" LOC = P101 | IOSTANDARD = LVTTL;
+NET "segment_part<4>" LOC = P100 | IOSTANDARD = LVTTL;
+NET "segment_part<5>" LOC = P99 | IOSTANDARD = LVTTL;
+NET "segment_part<6>" LOC = P98 | IOSTANDARD = LVTTL;
+
+NET "segment_LED<0>" LOC = P95 | IOSTANDARD = LVTTL;
+NET "segment_LED<1>" LOC = P94 | IOSTANDARD = LVTTL;
+NET "segment_LED<2>" LOC = P93 | IOSTANDARD = LVTTL;
+NET "segment_LED<3>" LOC = P92 | IOSTANDARD = LVTTL;

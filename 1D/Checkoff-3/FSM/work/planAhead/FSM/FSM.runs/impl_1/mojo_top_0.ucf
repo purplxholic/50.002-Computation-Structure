@@ -65,6 +65,7 @@ NET "cube_col[10]" LOC = P34;
 NET "cube_col[10]" IOSTANDARD = LVTTL;
 NET "cube_col[11]" LOC = P32;
 NET "cube_col[11]" IOSTANDARD = LVTTL;
+
 NET "cube_col[12]" LOC = P29;
 NET "cube_col[12]" IOSTANDARD = LVTTL;
 NET "cube_col[13]" LOC = P26;
@@ -73,6 +74,30 @@ NET "cube_col[14]" LOC = P23;
 NET "cube_col[14]" IOSTANDARD = LVTTL;
 NET "cube_col[15]" LOC = P21;
 NET "cube_col[15]" IOSTANDARD = LVTTL;
+
+NET "segment_part[0]" LOC = P105;
+NET "segment_part[0]" IOSTANDARD = LVTTL;
+NET "segment_part[1]" LOC = P104;
+NET "segment_part[1]" IOSTANDARD = LVTTL;
+NET "segment_part[2]" LOC = P102;
+NET "segment_part[2]" IOSTANDARD = LVTTL;
+NET "segment_part[3]" LOC = P101;
+NET "segment_part[3]" IOSTANDARD = LVTTL;
+NET "segment_part[4]" LOC = P100;
+NET "segment_part[4]" IOSTANDARD = LVTTL;
+NET "segment_part[5]" LOC = P99;
+NET "segment_part[5]" IOSTANDARD = LVTTL;
+NET "segment_part[6]" LOC = P98;
+NET "segment_part[6]" IOSTANDARD = LVTTL;
+
+NET "segment_LED[0]" LOC = P95;
+NET "segment_LED[0]" IOSTANDARD = LVTTL;
+NET "segment_LED[1]" LOC = P94;
+NET "segment_LED[1]" IOSTANDARD = LVTTL;
+NET "segment_LED[2]" LOC = P93;
+NET "segment_LED[2]" IOSTANDARD = LVTTL;
+NET "segment_LED[3]" LOC = P92;
+NET "segment_LED[3]" IOSTANDARD = LVTTL;
 
 ####################################################################################
 # Constraints from file : 'mojo.ucf'
