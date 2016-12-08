@@ -1,0 +1,57 @@
+module seven_seg (
+    input clk,
+    input rst,
+    input state[3],
+    input score[6],
+    input  level[4],
+    output segs[7],
+    output segmentLED[4]
+  ) {
+    dff counter[30](.clk(clk), .rst(rst));
+    sig n[2]; //initialise cycle
+  sig char[4];
+
+  always {
+    n = counter.q[15-:2]; // choose the 14 and 15 bits
+    counter.d = counter.q+1;
+    
+    segmentLED[3:0] = 4b1111; // set all 4 levels to high first
+    segmentLED[n] = 1b0;      // set nth level to low (cycles through digits)
+    
+    if (state == 5) {    // WIN state
+      case(n) {
+        0: char = 15;
+        1: char = 11;
+        2: char = 12;
+        3: char = 11;
+        }
+    }
+    else {
+      if (state == 0 & n==3) { segmentLED[n] = counter.q[24]; }
+      case(n) {
+        0: char = score/10;            // first digit: score/10
+        1: char = score-(score/10)*10; // second digit: score%10
+        2: char = 10;                  // 3rd digit: L
+        3: char = level;               // 4th digit: level
+        default: char = 0;
+        }
+    }
+    case (char) {
+      0: segs = 7b0111111;
+      1: segs = 7b0000110;
+      2: segs = 7b1011011;
+      3: segs = 7b1001111;
+      4: segs = 7b1100110;
+      5: segs = 7b1101101;
+      6: segs = 7b1111101;
+      7: segs = 7b0000111;
+      8: segs = 7b1111111;
+      9: segs = 7b1100111;
+      10: segs = 7b0111000; // L
+      11: segs = 7b1101110; // Y
+      12: segs = 7b1110111; // A
+      15: segs = 7b0;  // all off
+      default: segs = 7b1111111;
+    }
+  }
+}

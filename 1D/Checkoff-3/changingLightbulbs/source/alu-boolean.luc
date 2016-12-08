@@ -1,0 +1,24 @@
+module boolean (
+    input a[8],      // first 8bit input
+    input b[8],      // second 8bit input
+    input alufn[4],  // 4 control signals (determines which boolean operation the module performs)
+    output op[8]     // result of boolean operation
+  ) {
+
+  var i;
+  sig abi[2];
+  
+  always {
+    op = 8b0;
+    for (i=0; i<8; i++) {   // iterates 8 times to perform boolean operation on each pair of bits in a and b
+      abi[1] = b[i];
+      abi[0] = a[i];
+      case(abi) {           // this enables any of the 16 2-input boolean functions to be performed, depending on alufn values
+        b00: op[i] = alufn[0];
+        b01: op[i] = alufn[1];
+        b10: op[i] = alufn[2];
+        b11: op[i] = alufn[3];
+      }
+    }
+  }
+}

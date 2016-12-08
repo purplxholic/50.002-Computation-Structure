@@ -1,0 +1,26 @@
+module cube (
+    input clk,  // clock
+    input rst,  // reset
+    input matrix[4][4][4],
+    input showcurr,
+    input curr[3][2],
+    output level[4],
+    output col[4][4]
+  ) {
+
+    dff counter[25](.clk(clk), .rst(rst));
+    sig n[2]; //initialise cycle
+  
+    always {
+    n = counter.q[15-:2]; // choose the 14 and 15 bits
+    counter.d = counter.q + 1;
+
+    level[3:0] = 4b1111; // set all 4 levels to high first
+    level[n] = 2b0;        // set the nth level to low (acts as ground for LEDs)
+    
+    col = matrix[n];          // output columns from the matrix
+    if (showcurr & n==curr[0]) {
+      col[curr[1]][curr[2]] = counter.q[24];
+    }
+  }
+}

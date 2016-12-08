@@ -1,0 +1,46 @@
+NET "movebtn<0>" LOC = P132 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<1>" LOC = P131 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<2>" LOC = P140 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<3>" LOC = P137 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<4>" LOC = P139 | IOSTANDARD = LVTTL | PULLUP;
+NET "movebtn<5>" LOC = P138 | IOSTANDARD = LVTTL | PULLUP;
+NET "startbtn" LOC = P134 | IOSTANDARD = LVTTL | PULLUP;
+NET "resetbtn" LOC = P133 | IOSTANDARD = LVTTL | PULLUP;
+
+NET "cube_level<0>" LOC = P2 | IOSTANDARD = LVTTL;
+NET "cube_level<1>" LOC = P1 | IOSTANDARD = LVTTL;
+NET "cube_level<2>" LOC = P144 | IOSTANDARD = LVTTL;
+NET "cube_level<3>" LOC = P143 | IOSTANDARD = LVTTL;
+
+NET "cube_col<0>" LOC = P24 | IOSTANDARD = LVTTL;
+NET "cube_col<1>" LOC = P23 | IOSTANDARD = LVTTL;
+NET "cube_col<2>" LOC = P22 | IOSTANDARD = LVTTL;
+NET "cube_col<3>" LOC = P21 | IOSTANDARD = LVTTL;
+
+NET "cube_col<4>" LOC = P17 | IOSTANDARD = LVTTL;
+NET "cube_col<5>" LOC = P16 | IOSTANDARD = LVTTL;
+NET "cube_col<6>" LOC = P15 | IOSTANDARD = LVTTL;
+NET "cube_col<7>" LOC = P14 | IOSTANDARD = LVTTL;
+
+NET "cube_col<8>" LOC = P12 | IOSTANDARD = LVTTL;
+NET "cube_col<9>" LOC = P11 | IOSTANDARD = LVTTL;
+NET "cube_col<10>" LOC = P10 | IOSTANDARD = LVTTL;
+NET "cube_col<11>" LOC = P9 | IOSTANDARD = LVTTL;
+
+NET "cube_col<12>" LOC = P8| IOSTANDARD = LVTTL;
+NET "cube_col<13>" LOC = P7 | IOSTANDARD = LVTTL;
+NET "cube_col<14>" LOC = P6 | IOSTANDARD = LVTTL;
+NET "cube_col<15>" LOC = P5 | IOSTANDARD = LVTTL;
+
+NET "segment_part<0>" LOC = P95 | IOSTANDARD = LVTTL;
+NET "segment_part<1>" LOC = P94 | IOSTANDARD = LVTTL;
+NET "segment_part<2>" LOC = P98 | IOSTANDARD = LVTTL;
+NET "segment_part<3>" LOC = P97 | IOSTANDARD = LVTTL;
+NET "segment_part<4>" LOC = P100 | IOSTANDARD = LVTTL;
+NET "segment_part<5>" LOC = P99 | IOSTANDARD = LVTTL;
+NET "segment_part<6>" LOC = P102 | IOSTANDARD = LVTTL;
+
+NET "segment_LED<0>" LOC = P105 | IOSTANDARD = LVTTL;
+NET "segment_LED<1>" LOC = P104 | IOSTANDARD = LVTTL;
+NET "segment_LED<2>" LOC = P111 | IOSTANDARD = LVTTL;
+NET "segment_LED<3>" LOC = P112 | IOSTANDARD = LVTTL;

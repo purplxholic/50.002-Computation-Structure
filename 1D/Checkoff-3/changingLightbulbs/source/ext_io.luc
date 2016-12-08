@@ -1,0 +1,60 @@
+module ext_io (
+    input clk,  // clock
+    input rst,  // reset
+    input movebtn[6],
+    input start,
+    input reset,
+    output movebtn_pressed[6],
+    output startpressed,
+    output resetpressed
+  ) {
+
+  .clk(clk) {
+    button_conditioner start_cond;     // button input button_conditioner
+    edge_detector start_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner reset_cond;     // button input button_conditioner
+    edge_detector reset_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner up_cond;     // button input button_conditioner
+    edge_detector up_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner down_cond;     // button input button_conditioner
+    edge_detector down_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner left_cond;     // button input button_conditioner
+    edge_detector left_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner right_cond;     // button input button_conditioner
+    edge_detector right_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner fw_cond;     // button input button_conditioner
+    edge_detector fw_edge(#RISE(1), #FALL(0)); // detect rising edges
+    button_conditioner bw_cond;     // button input button_conditioner
+    edge_detector bw_edge(#RISE(1), #FALL(0)); // detect rising edges
+    .rst(rst) {}    
+  }
+  
+  always {
+    start_cond.in = start;
+    start_edge.in = start_cond.out;
+    reset_cond.in = reset;
+    reset_edge.in = reset_cond.out;
+    
+    up_cond.in = movebtn[0];
+    up_edge.in = up_cond.out;
+    down_cond.in = movebtn[1];
+    down_edge.in = down_cond.out;
+    left_cond.in = movebtn[2];
+    left_edge.in = left_cond.out;
+    right_cond.in = movebtn[3];
+    right_edge.in = right_cond.out;
+    fw_cond.in = movebtn[4];
+    fw_edge.in = fw_cond.out;
+    bw_cond.in = movebtn[5];
+    bw_edge.in = bw_cond.out;
+
+    startpressed = start_edge.out;
+    resetpressed = reset_edge.out;
+    movebtn_pressed[0] = up_edge.out;
+    movebtn_pressed[1] = down_edge.out;
+    movebtn_pressed[2] = left_edge.out;
+    movebtn_pressed[3] = right_edge.out;
+    movebtn_pressed[4] = fw_edge.out;
+    movebtn_pressed[5] = bw_edge.out;
+  }
+}

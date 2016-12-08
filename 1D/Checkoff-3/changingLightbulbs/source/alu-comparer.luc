@@ -1,0 +1,22 @@
+module comparer (
+    input z,      // z=1 when a-b=0
+    input v,      // v=1 when a-b overflows (>8 bits)
+    input n,      // n=1 when a-b is negative
+    input alufn1, // control signal
+    input alufn2, // control signal
+    output op[8]  // least significant bit of op is the result of the compare operation
+  ) {
+
+  always {
+    op = 8b0;
+    if (alufn2==0 & alufn1==1) {       // op returns a=b
+      op[0] = z;
+    }
+    else if (alufn2==1 & alufn1==0) {  // op returns a<b
+      op[0] = n^v;
+    }
+    else if (alufn2==1 & alufn1==1) {  // op returns a<=b
+      op[0] = z | (n^v);
+    }
+  }
+}

@@ -1,0 +1,172 @@
+module mojo_top (
+    input clk,              // 50MHz clock
+    input rst_n,            // reset button (active low)
+    //input cclk,             // configuration clock, AVR ready when high
+    output spi_miso,        // AVR SPI MISO
+    //input spi_ss,           // AVR SPI Slave Select
+    //input spi_mosi,         // AVR SPI MOSI
+    //input spi_sck,          // AVR SPI Clock
+    output spi_channel [4], // AVR general purpose pins (used by default to select ADC channel)
+    //input avr_tx,           // AVR TX (FPGA RX)
+    output avr_rx,          // AVR RX (FPGA TX)
+    //input avr_rx_busy,       // AVR RX buffer full
+    input movebtn[6],
+    input startbtn,
+    input resetbtn,
+    output cube_level[4],
+    output cube_col[4][4],
+    output segment_part[7],
+    output segment_LED[4]
+  ) {
+  
+  sig rst;                  // reset signal
+  
+  .clk(clk) {
+    // The reset conditioner is used to synchronize the reset signal to the FPGA
+    // clock. This ensures the entire FPGA comes out of reset at the same time.
+    reset_conditioner reset_cond;
+    .rst(rst){
+      dff level[4];
+      dff current[3][2];
+      dff next[3][2];      
+      dff matrix[4][4][4];
+      dff score[6];
+      ext_io buttons;
+      cube cube;
+      seven_seg displaySegments;
+      fsm sm(#INIT(CHOOSE_LVL))={CHOOSE_LVL,INIT_MAP,MOVE,CHECK1,CHECK,WIN};
+    }
+  }
+  alu alu;
+  const LEVELS= {
+                {{4b1000, 4b1001, 4b0, 4b1001}, {4b0, 4b1111, 4b1001, 4b1111}, {4b0, 4b1001, 4b1001, 4b1001}, {4b0, 4b1111,4b0, 4b1111}}, // level 7 (A- v hard)
+                {{4b1000,4b0000,4b0000,4b1100},{4b0001,4b0110,4b0110,4b1101},{4b0001,4b0110,4b0110,4b0111},{4b1111,4b0000,4b0000,4b1001}},// 6 (needs lots of jumping)
+                {{4b1001,4b0001,4b0001,4b1101},{4b1001,4b1000,4b1000,4b1011},{4b1001,4b0000,4b0000,4b1011},{4b1001,4b1001,4b1001,4b1101}}, // 5 (oka)
+                {{4b1100,4b1100,4b0011,4b0011},{4b1100,4b1110,4b0111,4b0011},{4b0011,4b0111,4b1110,4b1100},{4b0011,4b0011,4b1100,4b1100}}, // 4 j3's  scam 
+                {{4b1000, 4b1000, 4b1000, 4b1000}, {4b0, 4b1000, 4b1000, 4b0011}, {4b0011, 4b0011, 4b0000, 4b0011}, {4b0011, 4b1111, 4b0, 4b0}}, // level 3 (a bit hard)
+                {{4b1000, 4b0000, 4b0000, 4b1111}, {4b0, 4b1001, 4b1001, 4b1001}, {4b0, 4b0, 4b0, 4b0}, {4b1000, 4b0, 4b0, 4b1001}},  // level 2 (smiley face)
+                {{4b1001,4b0,4b0,4b1001}, {4b0,4b0,4b0,4b0}, {4b0,4b0,4b0,4b0}, {4b1001,4b0,4b0,4b1001}}, // level 1 (6 corners)
+                {{4b1000, 4b0, 4b0, 4b0}, {4b1111, 4b0001, 4b0001, 4b1111}, {4b0, 4b0, 4b0, 4b1000}, {4b1111, 4b1001, 4b1001, 4b1001}} // level 0 (warmup)
+    };
+  
+  always {
+    reset_cond.in = ~rst_n; // input raw inverted reset signal
+    rst = reset_cond.out;   // conditioned reset
+    
+    spi_miso = bz;          // not using SPI
+    spi_channel = bzzzz;    // not using flags
+    avr_rx = bz;            // not using serial port
+    
+    // ext_io module
+    buttons.movebtn = ~movebtn;
+    buttons.start = ~startbtn;
+    buttons.reset = ~resetbtn;
+    
+    // cube module
+    cube.matrix = matrix.q;
+    cube.showcurr = 0;
+    cube.curr = current.q;
+    cube_col = cube.col;
+    cube_level = cube.level;
+    
+    // alu module
+    alu.alufn = 6b0;
+    alu.a = 8b0;
+    alu.b = 8b0;
+    
+    // seven_segment module
+    displaySegments.state = sm.q;
+    displaySegments.score = score.q;
+    displaySegments.level = level.q;
+    segment_LED = displaySegments.segmentLED;
+    segment_part = displaySegments.segs;
+    
+    // dff defaults
+    level.d = level.q;
+    current.d = current.q;
+    next.d = next.q;
+    matrix.d = matrix.q;
+    score.d = score.q;
+    sm.d = sm.q;
+    
+    // STATE MACHINE //
+    case(sm.q) {
+      sm.CHOOSE_LVL:
+      // up/down -> increase/decrease level
+      // start -> INIT_MAP
+        matrix.d = 4x{{4x{{4b0}}}};
+        if (buttons.movebtn_pressed[0] & level.q < 7) {level.d = level.q+1;}
+        if (buttons.movebtn_pressed[1] & level.q > 0) {level.d = level.q-1;}
+        if (buttons.startpressed) {sm.d = sm.INIT_MAP;}
+        rst = buttons.resetpressed;
+      sm.INIT_MAP:
+      // get level map from ROM(?) and output to cube
+      // up/down/left/right/fw/bw -> CHECK
+      // reset -> CHOOSE_LVL
+        matrix.d = LEVELS[level.q];
+        current.d = 3x{{2b11}};    // initialize current position
+        cube.showcurr = 1;
+        matrix.d[3][3][3] = 0;  // off current position LED
+        next.d = 3x{{2b11}};
+        if (|buttons.movebtn_pressed) {
+          case (buttons.movebtn_pressed) {
+            6b000001: next.d[0] = current.q[0]-1;
+            6b000010: next.d[0] = current.q[0]+1;
+            6b000100: next.d[2] = current.q[2]-1;
+            6b001000: next.d[2] = current.q[2]+1;
+            6b010000: next.d[1] = current.q[1]+1;
+            6b100000: next.d[1] = current.q[1]-1;
+          }
+          sm.d = sm.CHECK1;  
+        }
+        if (buttons.resetpressed) {sm.d=sm.CHOOSE_LVL;}
+      sm.MOVE:
+      // up/down/left/right/fw/bw -> CHECK
+      // reset -> INIT_MAP
+        next.d = current.q;
+        cube.showcurr = 1;
+        if (|buttons.movebtn_pressed) {
+          case (buttons.movebtn_pressed) {
+            6b000001: next.d[0] = current.q[0]-1;
+            6b000010: next.d[0] = current.q[0]+1;
+            6b000100: next.d[2] = current.q[2]-1;
+            6b001000: next.d[2] = current.q[2]+1;
+            6b010000: next.d[1] = current.q[1]+1;
+            6b100000: next.d[1] = current.q[1]-1;
+          }
+          sm.d = sm.CHECK1;  
+        }
+        if (buttons.resetpressed) {  // subtract 1 from score >:D
+          if (score.q == 0) {sm.d = sm.INIT_MAP;}
+          else {
+            alu.a = score.q;
+            alu.b = 1b1;
+            alu.alufn = 6b1;
+            score.d = alu.out[3:0];
+            sm.d=sm.INIT_MAP; }
+          }
+      sm.CHECK1:
+        if (matrix.q[next.q[0]][next.q[1]][next.q[2]] == 1) {  // if move is valid, off LED, update current and go to CHECK
+          matrix.d[next.q[0]][next.q[1]][next.q[2]] = 0;
+          current.d = next.q;
+          sm.d = sm.CHECK;
+        }
+        else {sm.d=sm.MOVE;}           // if move invalid, do nothing and go back to MOVE
+      sm.CHECK:
+      // check win condition (ALU)
+      // if win -> WIN, else -> MOVE
+        if (matrix.q == 4x{{4x{{4b0}}}}) {
+          alu.a = score.q;
+          alu.b = level.q;
+          alu.alufn = 6b0;
+          score.d = alu.out[3:0];
+          sm.d=sm.WIN;}
+        else {sm.d=sm.MOVE;}
+      sm.WIN:
+      // shows YAY on 7-segment
+      // start/reset -> CHOOSE_LVL
+        if (buttons.startpressed) {
+          sm.d = sm.CHOOSE_LVL;}
+    }
+  }
+}

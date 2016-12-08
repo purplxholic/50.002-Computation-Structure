@@ -1,0 +1,1668 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+C:\Xilinx\14.7\ISE_DS\ISE\bin\nt64\unwrapped\trce.exe -intstyle ise -o
+mojo_top_0.twr -v 30 -l 30 mojo_top_0_routed.ncd mojo_top_0.pcf
+
+Design file:              mojo_top_0_routed.ncd
+Physical constraint file: mojo_top_0.pcf
+Device,package,speed:     xc6slx9,tqg144,C,-2 (PRODUCTION 1.23 2013-10-13)
+Report level:             verbose report, limited to 30 items per constraint
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 26252 paths analyzed, 1425 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  10.278ns.
+--------------------------------------------------------------------------------
+Slack:                  9.722ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_2 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      10.129ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_2 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y57.CQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[3]
+                                                       buttons/left_cond/M_ctr_q_2
+    SLICE_X7Y58.A1       net (fanout=2)        1.237   buttons/left_cond/M_ctr_q[2]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                     10.129ns (1.841ns logic, 8.288ns route)
+                                                       (18.2% logic, 81.8% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.205ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_4 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.643ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.117ns (0.599 - 0.716)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_4 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y58.AQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[7]
+                                                       buttons/left_cond/M_ctr_q_4
+    SLICE_X7Y58.A2       net (fanout=2)        0.751   buttons/left_cond/M_ctr_q[4]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.643ns (1.841ns logic, 7.802ns route)
+                                                       (19.1% logic, 80.9% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.227ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_8 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.618ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.120ns (0.599 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_8 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.AQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_8
+    SLICE_X8Y58.A1       net (fanout=2)        1.316   buttons/fw_cond/M_ctr_q[8]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X16Y53.D4      net (fanout=13)       1.791   M_buttons_movebtn_pressed[4]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.618ns (1.885ns logic, 7.733ns route)
+                                                       (19.6% logic, 80.4% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.232ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_6 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.614ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.119ns (0.599 - 0.718)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_6 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y52.CQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[7]
+                                                       buttons/bw_cond/M_ctr_q_6
+    SLICE_X7Y52.A1       net (fanout=2)        0.755   buttons/bw_cond/M_ctr_q[6]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.614ns (1.846ns logic, 7.768ns route)
+                                                       (19.2% logic, 80.8% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.236ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_4 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.610ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.119ns (0.599 - 0.718)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_4 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y52.AQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[7]
+                                                       buttons/bw_cond/M_ctr_q_4
+    SLICE_X7Y52.A2       net (fanout=2)        0.751   buttons/bw_cond/M_ctr_q[4]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.610ns (1.846ns logic, 7.764ns route)
+                                                       (19.2% logic, 80.8% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.248ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_2 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.603ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_2 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y57.CQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[3]
+                                                       buttons/left_cond/M_ctr_q_2
+    SLICE_X7Y58.A1       net (fanout=2)        1.237   buttons/left_cond/M_ctr_q[2]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X14Y53.D4      net (fanout=13)       1.646   M_buttons_movebtn_pressed[2]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.603ns (1.822ns logic, 7.781ns route)
+                                                       (19.0% logic, 81.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.301ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_13 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.542ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.122ns (0.599 - 0.721)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_13 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y60.BQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[15]
+                                                       buttons/fw_cond/M_ctr_q_13
+    SLICE_X8Y58.A2       net (fanout=2)        1.240   buttons/fw_cond/M_ctr_q[13]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X16Y53.D4      net (fanout=13)       1.791   M_buttons_movebtn_pressed[4]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.542ns (1.885ns logic, 7.657ns route)
+                                                       (19.8% logic, 80.2% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.392ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_3 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.452ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.121ns (0.599 - 0.720)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_3 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y51.DQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[3]
+                                                       buttons/bw_cond/M_ctr_q_3
+    SLICE_X7Y52.A6       net (fanout=2)        0.593   buttons/bw_cond/M_ctr_q[3]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.452ns (1.846ns logic, 7.606ns route)
+                                                       (19.5% logic, 80.5% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.406ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_3 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.445ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_3 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y57.DQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[3]
+                                                       buttons/left_cond/M_ctr_q_3
+    SLICE_X7Y58.A3       net (fanout=2)        0.553   buttons/left_cond/M_ctr_q[3]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.445ns (1.841ns logic, 7.604ns route)
+                                                       (19.5% logic, 80.5% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.449ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_7 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.399ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.117ns (0.599 - 0.716)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_7 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y58.DQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[7]
+                                                       buttons/left_cond/M_ctr_q_7
+    SLICE_X7Y58.A4       net (fanout=2)        0.507   buttons/left_cond/M_ctr_q[7]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.399ns (1.841ns logic, 7.558ns route)
+                                                       (19.6% logic, 80.4% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.492ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_8 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.353ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.120ns (0.599 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_8 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.AQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_8
+    SLICE_X8Y58.A1       net (fanout=2)        1.316   buttons/fw_cond/M_ctr_q[8]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X7Y52.D2       net (fanout=13)       1.224   M_buttons_movebtn_pressed[4]
+    SLICE_X7Y52.D        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       out1
+    SLICE_X12Y45.B3      net (fanout=5)        1.534   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.353ns (1.890ns logic, 7.463ns route)
+                                                       (20.2% logic, 79.8% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.493ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_2 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.351ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.121ns (0.599 - 0.720)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_2 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y51.CQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[3]
+                                                       buttons/bw_cond/M_ctr_q_2
+    SLICE_X7Y52.A4       net (fanout=2)        0.492   buttons/bw_cond/M_ctr_q[2]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.351ns (1.846ns logic, 7.505ns route)
+                                                       (19.7% logic, 80.3% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.495ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_8 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.350ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.120ns (0.599 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_8 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.AQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_8
+    SLICE_X8Y58.A1       net (fanout=2)        1.316   buttons/fw_cond/M_ctr_q[8]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X14Y53.D3      net (fanout=13)       1.766   M_buttons_movebtn_pressed[4]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.350ns (1.866ns logic, 7.484ns route)
+                                                       (20.0% logic, 80.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.566ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_13 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.277ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.122ns (0.599 - 0.721)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_13 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y60.BQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[15]
+                                                       buttons/fw_cond/M_ctr_q_13
+    SLICE_X8Y58.A2       net (fanout=2)        1.240   buttons/fw_cond/M_ctr_q[13]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X7Y52.D2       net (fanout=13)       1.224   M_buttons_movebtn_pressed[4]
+    SLICE_X7Y52.D        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       out1
+    SLICE_X12Y45.B3      net (fanout=5)        1.534   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.277ns (1.890ns logic, 7.387ns route)
+                                                       (20.4% logic, 79.6% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.569ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_13 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.274ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.122ns (0.599 - 0.721)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_13 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y60.BQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[15]
+                                                       buttons/fw_cond/M_ctr_q_13
+    SLICE_X8Y58.A2       net (fanout=2)        1.240   buttons/fw_cond/M_ctr_q[13]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X14Y53.D3      net (fanout=13)       1.766   M_buttons_movebtn_pressed[4]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.274ns (1.866ns logic, 7.408ns route)
+                                                       (20.1% logic, 79.9% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.588ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_2 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.263ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_2 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y57.CQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[3]
+                                                       buttons/left_cond/M_ctr_q_2
+    SLICE_X7Y58.A1       net (fanout=2)        1.237   buttons/left_cond/M_ctr_q[2]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X7Y52.D4       net (fanout=13)       0.761   M_buttons_movebtn_pressed[2]
+    SLICE_X7Y52.D        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       out1
+    SLICE_X12Y45.B3      net (fanout=5)        1.534   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.263ns (1.846ns logic, 7.417ns route)
+                                                       (19.9% logic, 80.1% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.589ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_12 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.262ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_12 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y54.AQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[15]
+                                                       buttons/bw_cond/M_ctr_q_12
+    SLICE_X4Y52.A1       net (fanout=2)        0.995   buttons/bw_cond/M_ctr_q[12]
+    SLICE_X4Y52.A        Tilo                  0.254   buttons/bw_edge/M_last_q
+                                                       buttons/bw_cond/out3
+    SLICE_X7Y52.B2       net (fanout=3)        0.753   buttons/out2_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.262ns (1.841ns logic, 7.421ns route)
+                                                       (19.9% logic, 80.1% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.617ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_7 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.229ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.119ns (0.599 - 0.718)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_7 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y52.DQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[7]
+                                                       buttons/bw_cond/M_ctr_q_7
+    SLICE_X7Y52.A3       net (fanout=2)        0.370   buttons/bw_cond/M_ctr_q[7]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.229ns (1.846ns logic, 7.383ns route)
+                                                       (20.0% logic, 80.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.619ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_6 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.229ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.117ns (0.599 - 0.716)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_6 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y58.CQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[7]
+                                                       buttons/left_cond/M_ctr_q_6
+    SLICE_X7Y58.A6       net (fanout=2)        0.337   buttons/left_cond/M_ctr_q[6]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.229ns (1.841ns logic, 7.388ns route)
+                                                       (19.9% logic, 80.1% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.630ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_11 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.215ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.120ns (0.599 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_11 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.DQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_11
+    SLICE_X8Y58.A3       net (fanout=2)        0.913   buttons/fw_cond/M_ctr_q[11]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X16Y53.D4      net (fanout=13)       1.791   M_buttons_movebtn_pressed[4]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.215ns (1.885ns logic, 7.330ns route)
+                                                       (20.5% logic, 79.5% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.643ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_13 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.208ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.114ns (0.599 - 0.713)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_13 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y54.BQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[15]
+                                                       buttons/bw_cond/M_ctr_q_13
+    SLICE_X4Y52.A2       net (fanout=2)        0.941   buttons/bw_cond/M_ctr_q[13]
+    SLICE_X4Y52.A        Tilo                  0.254   buttons/bw_edge/M_last_q
+                                                       buttons/bw_cond/out3
+    SLICE_X7Y52.B2       net (fanout=3)        0.753   buttons/out2_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X13Y54.C6      net (fanout=10)       1.754   M_buttons_movebtn_pressed[5]
+    SLICE_X13Y54.C       Tilo                  0.259   Mmux__n032044
+                                                       M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>11
+    SLICE_X12Y45.B2      net (fanout=4)        1.427   M_buttons_movebtn_pressed[5]_GND_1_o_equal_38_o<5>1
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.208ns (1.841ns logic, 7.367ns route)
+                                                       (20.0% logic, 80.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.650ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_6 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.196ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.119ns (0.599 - 0.718)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_6 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y52.CQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[7]
+                                                       buttons/bw_cond/M_ctr_q_6
+    SLICE_X7Y52.A1       net (fanout=2)        0.755   buttons/bw_cond/M_ctr_q[6]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X14Y53.D6      net (fanout=10)       1.774   M_buttons_movebtn_pressed[5]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.196ns (1.822ns logic, 7.374ns route)
+                                                       (19.8% logic, 80.2% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.654ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/bw_cond/M_ctr_q_4 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.192ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.119ns (0.599 - 0.718)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/bw_cond/M_ctr_q_4 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y52.AQ       Tcko                  0.476   buttons/bw_cond/M_ctr_q[7]
+                                                       buttons/bw_cond/M_ctr_q_4
+    SLICE_X7Y52.A2       net (fanout=2)        0.751   buttons/bw_cond/M_ctr_q[4]
+    SLICE_X7Y52.A        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_cond/out1
+    SLICE_X7Y52.B1       net (fanout=3)        1.340   buttons/out_6
+    SLICE_X7Y52.B        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       buttons/bw_edge/out1
+    SLICE_X14Y53.D6      net (fanout=10)       1.774   M_buttons_movebtn_pressed[5]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.192ns (1.822ns logic, 7.370ns route)
+                                                       (19.8% logic, 80.2% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.665ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_8 (FF)
+  Destination:          M_sm_q_FSM_FFd2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.170ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.130ns (0.589 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_8 to M_sm_q_FSM_FFd2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.AQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_8
+    SLICE_X8Y58.A1       net (fanout=2)        1.316   buttons/fw_cond/M_ctr_q[8]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X7Y52.D2       net (fanout=13)       1.224   M_buttons_movebtn_pressed[4]
+    SLICE_X7Y52.D        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       out1
+    SLICE_X17Y39.B1      net (fanout=5)        2.680   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+    SLICE_X17Y39.B       Tilo                  0.259   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In1
+    SLICE_X17Y39.A5      net (fanout=1)        0.230   M_sm_q_FSM_FFd2-In1
+    SLICE_X17Y39.A       Tilo                  0.259   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In2
+    SLICE_X17Y39.A1      net (fanout=1)        0.744   M_sm_q_FSM_FFd2-In
+    SLICE_X17Y39.CLK     Tas                   0.264   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In_rt
+                                                       M_sm_q_FSM_FFd2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.170ns (2.079ns logic, 7.091ns route)
+                                                       (22.7% logic, 77.3% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.679ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_10 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.166ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.120ns (0.599 - 0.719)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_10 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y59.CQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[11]
+                                                       buttons/fw_cond/M_ctr_q_10
+    SLICE_X8Y58.A4       net (fanout=2)        0.864   buttons/fw_cond/M_ctr_q[10]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X16Y53.D4      net (fanout=13)       1.791   M_buttons_movebtn_pressed[4]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.166ns (1.885ns logic, 7.281ns route)
+                                                       (20.6% logic, 79.4% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.692ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/up_cond/M_ctr_q_14 (FF)
+  Destination:          M_next_q_3_1 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.184ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.089ns (0.588 - 0.677)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/up_cond/M_ctr_q_14 to M_next_q_3_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y57.CQ      Tcko                  0.476   buttons/up_cond/M_ctr_q[15]
+                                                       buttons/up_cond/M_ctr_q_14
+    SLICE_X14Y53.C1      net (fanout=2)        0.987   buttons/up_cond/M_ctr_q[14]
+    SLICE_X14Y53.C       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       buttons/up_cond/out2
+    SLICE_X14Y53.B2      net (fanout=3)        0.928   buttons/out1_1
+    SLICE_X14Y53.B       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       buttons/up_edge/out1
+    SLICE_X5Y58.D1       net (fanout=11)       2.187   M_buttons_movebtn_pressed[0]
+    SLICE_X5Y58.D        Tilo                  0.259   Mmux__n032032
+                                                       Mmux__n0320321
+    SLICE_X11Y50.C1      net (fanout=2)        1.524   Mmux__n032032
+    SLICE_X11Y50.C       Tilo                  0.259   M_next_q[3]
+                                                       Mmux__n032046
+    SLICE_X15Y39.A4      net (fanout=2)        1.721   _n0320[3]
+    SLICE_X15Y39.CLK     Tas                   0.373   M_next_q_3_1
+                                                       M_next_q_3_1_rstpot
+                                                       M_next_q_3_1
+    -------------------------------------------------  ---------------------------
+    Total                                      9.184ns (1.837ns logic, 7.347ns route)
+                                                       (20.0% logic, 80.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.715ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_5 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.133ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.117ns (0.599 - 0.716)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_5 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y58.BQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[7]
+                                                       buttons/left_cond/M_ctr_q_5
+    SLICE_X7Y58.A5       net (fanout=2)        0.241   buttons/left_cond/M_ctr_q[5]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X16Y53.D3      net (fanout=13)       1.929   M_buttons_movebtn_pressed[2]
+    SLICE_X16Y53.D       Tilo                  0.254   N144
+                                                       Mmux__n03205_SW1
+    SLICE_X12Y45.B1      net (fanout=1)        1.237   N144
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.133ns (1.841ns logic, 7.292ns route)
+                                                       (20.2% logic, 79.8% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.731ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/left_cond/M_ctr_q_4 (FF)
+  Destination:          M_next_q_4_2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.117ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.117ns (0.599 - 0.716)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/left_cond/M_ctr_q_4 to M_next_q_4_2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X6Y58.AQ       Tcko                  0.476   buttons/left_cond/M_ctr_q[7]
+                                                       buttons/left_cond/M_ctr_q_4
+    SLICE_X7Y58.A2       net (fanout=2)        0.751   buttons/left_cond/M_ctr_q[4]
+    SLICE_X7Y58.A        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_cond/out1
+    SLICE_X7Y58.B2       net (fanout=3)        1.393   buttons/out_3
+    SLICE_X7Y58.B        Tilo                  0.259   Mmux__n032014
+                                                       buttons/left_edge/out1
+    SLICE_X14Y53.D4      net (fanout=13)       1.646   M_buttons_movebtn_pressed[2]
+    SLICE_X14Y53.D       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o<5>1
+    SLICE_X12Y45.B4      net (fanout=2)        1.013   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+    SLICE_X12Y45.B       Tilo                  0.254   M_next_q_4_2
+                                                       Mmux__n03205
+    SLICE_X12Y41.A3      net (fanout=2)        0.920   _n0320[4]
+    SLICE_X12Y41.A       Tilo                  0.254   M_next_q[5]
+                                                       M_next_q_4_rstpot
+    SLICE_X12Y45.BX      net (fanout=1)        1.572   M_next_q_4_rstpot
+    SLICE_X12Y45.CLK     Tdick                 0.085   M_next_q_4_2
+                                                       M_next_q_4_2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.117ns (1.822ns logic, 7.295ns route)
+                                                       (20.0% logic, 80.0% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.732ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/up_cond/M_ctr_q_19 (FF)
+  Destination:          M_next_q_3_1 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.142ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.091ns (0.588 - 0.679)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/up_cond/M_ctr_q_19 to M_next_q_3_1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y58.DQ      Tcko                  0.476   buttons/up_cond/M_ctr_q[19]
+                                                       buttons/up_cond/M_ctr_q_19
+    SLICE_X14Y53.C2      net (fanout=2)        0.945   buttons/up_cond/M_ctr_q[19]
+    SLICE_X14Y53.C       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       buttons/up_cond/out2
+    SLICE_X14Y53.B2      net (fanout=3)        0.928   buttons/out1_1
+    SLICE_X14Y53.B       Tilo                  0.235   M_buttons_movebtn_pressed[5]_PWR_1_o_equal_41_o
+                                                       buttons/up_edge/out1
+    SLICE_X5Y58.D1       net (fanout=11)       2.187   M_buttons_movebtn_pressed[0]
+    SLICE_X5Y58.D        Tilo                  0.259   Mmux__n032032
+                                                       Mmux__n0320321
+    SLICE_X11Y50.C1      net (fanout=2)        1.524   Mmux__n032032
+    SLICE_X11Y50.C       Tilo                  0.259   M_next_q[3]
+                                                       Mmux__n032046
+    SLICE_X15Y39.A4      net (fanout=2)        1.721   _n0320[3]
+    SLICE_X15Y39.CLK     Tas                   0.373   M_next_q_3_1
+                                                       M_next_q_3_1_rstpot
+                                                       M_next_q_3_1
+    -------------------------------------------------  ---------------------------
+    Total                                      9.142ns (1.837ns logic, 7.305ns route)
+                                                       (20.1% logic, 79.9% route)
+
+--------------------------------------------------------------------------------
+Slack:                  10.739ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               buttons/fw_cond/M_ctr_q_13 (FF)
+  Destination:          M_sm_q_FSM_FFd2 (FF)
+  Requirement:          20.000ns
+  Data Path Delay:      9.094ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.132ns (0.589 - 0.721)
+  Source Clock:         clk_BUFGP rising at 0.000ns
+  Destination Clock:    clk_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: buttons/fw_cond/M_ctr_q_13 to M_sm_q_FSM_FFd2
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X4Y60.BQ       Tcko                  0.525   buttons/fw_cond/M_ctr_q[15]
+                                                       buttons/fw_cond/M_ctr_q_13
+    SLICE_X8Y58.A2       net (fanout=2)        1.240   buttons/fw_cond/M_ctr_q[13]
+    SLICE_X8Y58.A        Tilo                  0.254   buttons/fw_edge/M_last_q
+                                                       buttons/fw_cond/out3
+    SLICE_X5Y58.B3       net (fanout=3)        0.897   buttons/out2_5
+    SLICE_X5Y58.B        Tilo                  0.259   Mmux__n032032
+                                                       buttons/fw_edge/out1
+    SLICE_X7Y52.D2       net (fanout=13)       1.224   M_buttons_movebtn_pressed[4]
+    SLICE_X7Y52.D        Tilo                  0.259   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+                                                       out1
+    SLICE_X17Y39.B1      net (fanout=5)        2.680   M_buttons_movebtn_pressed[5]_reduce_or_29_o
+    SLICE_X17Y39.B       Tilo                  0.259   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In1
+    SLICE_X17Y39.A5      net (fanout=1)        0.230   M_sm_q_FSM_FFd2-In1
+    SLICE_X17Y39.A       Tilo                  0.259   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In2
+    SLICE_X17Y39.A1      net (fanout=1)        0.744   M_sm_q_FSM_FFd2-In
+    SLICE_X17Y39.CLK     Tas                   0.264   M_sm_q_FSM_FFd2_1
+                                                       M_sm_q_FSM_FFd2-In_rt
+                                                       M_sm_q_FSM_FFd2
+    -------------------------------------------------  ---------------------------
+    Total                                      9.094ns (2.079ns logic, 7.015ns route)
+                                                       (22.9% logic, 77.1% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: TS_clk = PERIOD TIMEGRP "clk" 50 MHz HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 17.334ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 2.666ns (375.094MHz) (Tbcper_I)
+  Physical resource: clk_BUFGP/BUFG/I0
+  Logical resource: clk_BUFGP/BUFG/I0
+  Location pin: BUFGMUX_X2Y11.I0
+  Clock network: clk_BUFGP/IBUFG
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/bw_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/start_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/reset_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/fw_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/down_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/up_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/right_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 18.601ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 1.399ns (714.796MHz) (Tcp)
+  Physical resource: buttons/left_cond/M_sync_out/CLK
+  Logical resource: buttons/left_cond/sync/Mshreg_M_pipe_q_1/CLK
+  Location pin: SLICE_X8Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[3]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_0/CK
+  Location pin: SLICE_X4Y57.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[3]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_1/CK
+  Location pin: SLICE_X4Y57.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[3]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_2/CK
+  Location pin: SLICE_X4Y57.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[3]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_3/CK
+  Location pin: SLICE_X4Y57.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[7]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_4/CK
+  Location pin: SLICE_X4Y58.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[7]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_5/CK
+  Location pin: SLICE_X4Y58.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[7]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_6/CK
+  Location pin: SLICE_X4Y58.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[7]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_7/CK
+  Location pin: SLICE_X4Y58.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[11]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_8/CK
+  Location pin: SLICE_X4Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[11]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_9/CK
+  Location pin: SLICE_X4Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[11]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_10/CK
+  Location pin: SLICE_X4Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[11]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_11/CK
+  Location pin: SLICE_X4Y59.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[15]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_12/CK
+  Location pin: SLICE_X4Y60.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[15]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_13/CK
+  Location pin: SLICE_X4Y60.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[15]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_14/CK
+  Location pin: SLICE_X4Y60.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[15]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_15/CK
+  Location pin: SLICE_X4Y60.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[19]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_16/CK
+  Location pin: SLICE_X4Y61.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[19]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_17/CK
+  Location pin: SLICE_X4Y61.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[19]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_18/CK
+  Location pin: SLICE_X4Y61.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/fw_cond/M_ctr_q[19]/CLK
+  Logical resource: buttons/fw_cond/M_ctr_q_19/CK
+  Location pin: SLICE_X4Y61.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+Slack: 19.520ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 0.480ns (2083.333MHz) (Tcp)
+  Physical resource: buttons/right_cond/M_ctr_q[3]/CLK
+  Logical resource: buttons/right_cond/M_ctr_q_0/CK
+  Location pin: SLICE_X16Y54.CLK
+  Clock network: clk_BUFGP
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock clk
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+clk            |   10.278|         |         |         |
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 26252 paths, 0 nets, and 2699 connections
+
+Design statistics:
+   Minimum period:  10.278ns{1}   (Maximum frequency:  97.295MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Fri Dec 09 00:50:13 2016 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 230 MB
+
+
+

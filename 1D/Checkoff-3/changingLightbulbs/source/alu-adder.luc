@@ -1,0 +1,27 @@
+module adder (
+    input a[8],    // first 8bit input
+    input b[8],    // second 8bit input
+    input alufn0,  // control signal
+    output op[8],  // sum is a+b if alufn0=0, a-b if alufn0=1
+    output z,      // z=1 when sum=0
+    output v,      // v=1 when addition/subtraction overflows into the 9th bit
+    output n       // n=1 when sum is negative
+  ) {
+
+  sig tmpsum[8];   // store the sum temporarily so it can be used as input to z, v, n
+  sig xb7;
+  
+  always {
+    if (alufn0) {
+      tmpsum = a-b;
+    }
+    else {
+      tmpsum = a+b;
+    }
+    xb7 = (alufn0 ^b[7]);
+    op = tmpsum;
+    z = (tmpsum==8b0);
+    n = tmpsum[7];
+    v = (a[7] & xb7 & (~tmpsum[7])) | ((~a[7]) & (~xb7) & tmpsum[7]);
+  }
+}
