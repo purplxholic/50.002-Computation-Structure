@@ -188,7 +188,10 @@ module mojo_top_0 (
       MOVE_sm: begin
         M_next_d = M_current_q;
         M_cube_showcurr = 1'h1;
-        if ((|M_buttons_movebtn_pressed)) begin
+        M_alu_a = 8'h00;
+        M_alu_b = M_buttons_movebtn_pressed;
+        M_alu_alufn = 6'h35;
+        if (M_alu_out[0+0-:1]) begin
           
           case (M_buttons_movebtn_pressed)
             6'h01: begin
@@ -246,6 +249,9 @@ module mojo_top_0 (
       end
       WIN_sm: begin
         if (M_buttons_startpressed) begin
+          if (M_level_q < 3'h7) begin
+            M_level_d = M_level_q + 1'h1;
+          end
           M_sm_d = CHOOSE_LVL_sm;
         end
       end

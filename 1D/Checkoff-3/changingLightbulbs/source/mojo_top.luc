@@ -125,7 +125,10 @@ module mojo_top (
       // reset -> INIT_MAP
         next.d = current.q;
         cube.showcurr = 1;
-        if (|buttons.movebtn_pressed) {
+        alu.a = 8b0;
+        alu.b = buttons.movebtn_pressed;
+        alu.alufn = 6b110101;
+        if (alu.out[0]) {
           case (buttons.movebtn_pressed) {
             6b000001: next.d[0] = current.q[0]-1;
             6b000010: next.d[0] = current.q[0]+1;
@@ -166,6 +169,7 @@ module mojo_top (
       // shows YAY on 7-segment
       // start/reset -> CHOOSE_LVL
         if (buttons.startpressed) {
+          if (level.q<7) {level.d = level.q + 1;}
           sm.d = sm.CHOOSE_LVL;}
     }
   }
