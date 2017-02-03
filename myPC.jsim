@@ -1,0 +1,28 @@
+.include "nominal.jsim" 
+.include "stdcell.jsim" 
+.include "lab6pc.jsim"
+
+.subckt FA a b ci s co
+Xxor1 a b 1 xor2
+Xxor2 1 ci s xor2
+Xand11 b a 2 nand2
+Xand12 2 2 3 nand2
+Xand21 1 ci 4 nand2
+Xand22 4 4 5 nand2
+Xor11 3 5 6 nor2
+Xor12 6 6 co nor2 
+.ends
+
+*32-bit
+.subckt adder32 ALUFN0 a[31:0] b[31:0] s[31:0] 
+Xnor b[31:0] ALUFN0#32 XB[31:0] xor2
+Xadder0 a0 XB0 ALUFN0 s0 c0 FA
+Xadderall a[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+.ends
+
+.subckt pc clk reset ia[31:0] 
+Xreset reset#32  newPC[31:0] 0#32 bridge[31:0] mux2
+Xpc bridge[31:2] clk#30 ia[31:2] dreg
+Xadder 0 ia[31:0] 0#29 vdd 0#2 newPC[31:0] adder32
+.connect ia[1:0] 0
+.ends 

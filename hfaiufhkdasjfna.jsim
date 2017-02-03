@@ -1,0 +1,379 @@
+.include "nominal.jsim" 
+.include "stdcell.jsim" 
+.include "lab6checkoff.jsim"
+
+.subckt FA a b ci s co
+Xxor1 a b 1 xor2
+Xxor2 1 ci s xor2
+Xand11 b a 2 nand2
+Xand12 2 2 3 nand2
+Xand21 1 ci 4 nand2
+Xand22 4 4 5 nand2
+Xor11 3 5 6 nor2
+Xor12 6 6 co nor2 
+.ends
+
+
+*32-bit
+.subckt adder32 ALUFN0 a[31:0] b[31:0] s[31:0] z v n 
+Xnor b[31:0] ALUFN0#32 XB[31:0] xor2
+*adder0 is for the overspill of bits 
+*XB is the output of the xor gate
+Xadder0 a0 XB0 ALUFN0 s0 c0 FA
+Xadderall a[31:1] XB[31:1] c[30:0] s[31:1] c[31:1] FA
+
+*for z
+*to get true with 0 , use nor2 but standard cell does nt have 32 input nor. so break down using or 
+Xor0 s[0:7] s[8:15] s[16:23] s[24:31] o[0:7] or4
+Xor1 o[0:1] o[2:3] o[4:5] o[6:7] output[0:1] or4
+Xor2 output0 output1 z nor2
+
+*for v - according to the boolean equation 
+X1 s31 out1 inverter 
+X2 a31 out2 inverter 
+X3 XB31 out3 inverter 
+X4 out2 out3 s31 out4 and3
+X5 a31 XB31 out1 out5 and3
+X6 out4 out5 v or2
+.connect n s31
+.ends
+
+*comparable
+.subckt compare32 ALUFN[2:1] z v n cmp[31:0]
+Xcomp0 cmp[31:1] constant0
+Xoor n v 2 xor2
+Xor3 z 2 3 or2
+Xid ALUFN[1] ALUFN[2] 0 z 2 3 cmp0 mux4
+.ends
+
+*mux 
+.subckt boole32 ALUFN[3:0] A[31:0] B[31:0] boole[31:0]
+Xmux A[31:0] B[31:0] ALUFN[0]#32 ALUFN[1]#32 ALUFN[2]#32 ALUFN[3]#32 boole[31:0] mux4
+.ends
+
+*shifter 
+.subckt shift32 ALUFN[1:0] A[31:0] B[4:0] shift[31:0]
+*to select SR or LR (31:0) 
+Xshiftmux1 ALUFN0#32 A[31:0] A[0:31] firsto[31:0] mux2
+*to select A31 for SRA or 0 for SR and SL 
+Xshiftmux3 ALUFN1 0 A31 h mux2
+Xfirst  B4#32 firsto[31:0] firsto[15:0] h#16  W[31:0] mux2
+Xsecond B3#32 W[31:0] W[23:0] h#8 X[31:0] mux2
+Xthird B2#32 X[31:0] X[27:0] h#4 Y[31:0] mux2
+Xfourth B1#32 Y[31:0] Y[29:0] h#2 Z[31:0] mux2
+Xfifth B0#32 Z[31:0] Z[30:0] h SL[31:0] mux2
+*select again to reverse or not for SR and SL 
+Xshiftmux2 ALUFN0#32 SL[31:0] SL[0:31] shift[31:0] mux2
+.ends
+.subckt multi A[31:0] B[31:0] p[31:0]
+Xmulti1 A[31:0] B0#32 aaa[31:0] and2
+.connect aaa0 p0 
+Xmulti2 A[30:0] B1#31 bbb[30:0] and2
+Xmulti3 A[29:0] B2#30 c[29:0] and2 
+Xmulti4 A[28:0] B3#29 d[28:0] and2
+Xmulti5 A[27:0] B4#28 e[27:0] and2
+Xmulti6 A[26:0] B5#27 f[26:0] and2 
+Xmulti7 A[25:0] B6#26 g[25:0] and2
+Xmulti8 A[24:0] B7#25 h[24:0] and2
+Xmulti9 A[23:0] B8#24 i[23:0] and2 
+Xmulti10 A[22:0] B9#23 j[22:0] and2
+Xmulti11 A[21:0] B10#22 k[21:0] and2
+Xmulti12 A[20:0] B11#21 l[20:0] and2 
+Xmulti13 A[19:0] B12#20 m[19:0] and2
+Xmulti14 A[18:0] B13#19 n[18:0] and2
+Xmulti15 A[17:0] B14#18 o[17:0] and2 
+Xmulti16 A[16:0] B15#17 ppp[16:0] and2
+Xmulti17 A[15:0] B16#16 q[15:0] and2
+Xmulti18 A[14:0] B17#15 r[14:0] and2 
+Xmulti19 A[13:0] B18#14 s[13:0] and2
+Xmulti20 A[12:0] B19#13 t[12:0] and2
+Xmulti21 A[11:0] B20#12 u[11:0] and2 
+Xmulti22 A[10:0] B21#11 v[10:0] and2
+Xmulti23 A[9:0] B22#10 w[9:0] and2
+Xmulti24 A[8:0] B23#9 x[8:0] and2 
+Xmulti25 A[7:0] B24#8 y[7:0] and2
+Xmulti26 A[6:0] B25#7 z[6:0] and2
+Xmulti27 A[5:0] B26#6 aa[5:0] and2 
+Xmulti28 A[4:0] B27#5 bb[4:0] and2
+Xmulti29 A[3:0] B28#4 cc[3:0] and2
+Xmulti30 A[2:0] B29#3 dd[2:0] and2 
+Xmulti31 A[1:0] B30#2 ee[1:0] and2
+Xmulti32 A0 B31 ff0 and2
+
+*adder 
+*first c1 is carry in , second c1 is carry out 
+.connect ci 0
+*starts from aaa1 because aaa0 is alr conntected 
+
+*this is 31 bits
+Xadder00 aaa[31:1] bbb[30:0] ca[29:0] ci sa[30:1] p1 ca[30:0] FA
+*followed by 30 bits,etc 
+Xadder1 c[29:0] sa[30:1] cb[28:0] ci sb[29:1] p2 cb[29:0] FA
+Xadder2 d[28:0] sb[29:1] cccc[27:0] ci sc[28:1] p3 cccc[28:0] FA
+Xadder3 e[27:0] sc[28:1] cd[26:0] ci sd[27:1] p4 cd[27:0] FA
+Xadder4 f[26:0] sd[27:1] ce[25:0] ci se[26:1] p5 ce[26:0] FA
+Xadder5 g[25:0] se[26:1] cf[24:0] ci sf[25:1] p6 cf[25:0] FA
+Xadder6 h[24:0] sf[25:1] cg[23:0] ci sg[24:1] p7 cg[24:0] FA
+Xadder7 i[23:0] sg[24:1] ch[22:0] ci sh[23:1] p8 ch[23:0] FA
+Xadder8 j[22:0] sh[23:1] cii[21:0] ci si[22:1] p9 cii[22:0] FA
+Xadder9 k[21:0] si[22:1] cj[20:0] ci sj[21:1] p10 cj[21:0] FA
+Xadder10 l[20:0] sj[21:1] ck[19:0] ci sk[20:1] p11 ck[20:0] FA
+Xadder11 m[19:0] sk[20:1] cl[18:0] ci sl[19:1] p12 cl[19:0] FA
+Xadder12 n[18:0] sl[19:1] cm[17:0] ci sm[18:1] p13 cm[18:0] FA
+Xadder13 o[17:0] sm[18:1] cn[16:0] ci sn[17:1] p14 cn[17:0] FA
+Xadder14 ppp[16:0] sn[17:1] co[15:0] ci so[16:1] p15 co[16:0] FA
+Xadder15 q[15:0] so[16:1] cp[14:0] ci sp[15:1] p16 cp[15:0] FA
+Xadder16 r[14:0] sp[15:1] cq[13:0] ci sq[14:1] p17 cq[14:0] FA
+Xadder17 s[13:0] sq[14:1] cr[12:0] ci sr[13:1] p18 cr[13:0] FA
+Xadder18 t[12:0] sr[13:1] cs[11:0] ci ss[12:1] p19 cs[12:0] FA
+Xadder19 u[11:0] ss[12:1] ct[10:0] ci st[11:1] p20 ct[11:0] FA
+Xadder20 v[10:0] st[11:1] cu[9:0] ci su[10:1] p21 cu[10:0] FA
+Xadder21 w[9:0] su[10:1] cv[8:0] ci sv[9:1] p22 cv[9:0] FA
+Xadder22 x[8:0] sv[9:1] cw[7:0] ci sw[8:1] p23 cw[8:0] FA
+Xadder23 y[7:0] sw[8:1] cx[6:0] ci sx[7:1] p24 cx[7:0] FA
+Xadder24 z[6:0] sx[7:1] cy[5:0] ci sy[6:1] p25 cy[6:0] FA
+Xadder25 aa[5:0] sy[6:1] cz[4:0] ci sz[5:1] p26 cz[5:0] FA
+Xadder26 bb[4:0] sz[5:1] caa[3:0] ci saa[4:1] p27 caa[4:0] FA
+Xadder27 cc[3:0] saa[4:1] cbb[2:0] ci sbb[3:1] p28 cbb[3:0] FA
+Xadder28 dd[2:0] sbb[3:1] ccc[1:0] ci scc[2:1] p29 ccc[2:0] FA
+Xadder29 ee[1:0] scc[2:1] cdd0 ci sdd p30 cdd[1:0] FA
+Xadder30 ff0 sdd ci p31 cee0 FA
+
+
+.ends
+*ALU
+.subckt alu ALUFN[5:0] A[31:0] B[31:0] alu[31:0] z v n 
+Xadd ALUFN0 A[31:0] B[31:0] o1[31:0] z v n  adder32
+Xmulti A[31:0] B[31:0] o5[31:0] multi
+Xwhich ALUFN[1]#32 o1[31:0] o5[31:0] oo[31:0] mux2
+Xboole ALUFN[3:0] A[31:0] B[31:0] o2[31:0] boole32
+Xshift ALUFN[1:0] A[31:0] B[4:0]  o3[31:0] shift32
+Xcmp ALUFN[2:1] z v n o4[31:0] compare32
+XMUX ALUFN[4]#32 ALUFN[5]#32 oo[31:0] o2[31:0] o3[31:0] o4[31:0] alu[31:0] mux4
+.ends 
+
+***********START OF LAB 6 PART 2***********
+
+.subckt pc clk reset pcsel[2:0] jt[31:0] extendedPC[31:0] ia[31:0] newPC[31:0] id[15:0]
+*choose between pc extended, pc + 4, jt, illop 
+Xmuxfirst pcsel0#32 pcsel1#32  newPC[31:0]  extendedPC[31:0] jt[31:0] vdd 0#27 0 vdd 0 0 outfirst[31:0] mux4
+*choose between xad and output xPC
+Xmuxsecond pcsel2#32 outfirst[31:0] vdd 0#27 vdd 0#3 xPC[31:0] mux2 
+
+*extend to 32 bit and shift to left 2 bit
+Xextend id[15:0] extended[31:0] signExtension
+Xim 0 newPC[31:0] extended[31:0] extendedPC[31:0] zanny villian naria adder32
+Xreset reset#32 xPC[31:0] vdd 0#31 bridge[31:0] mux2
+Xreg bridge[31:0] clk#32 ia[31:0] dreg
+Xaddthat4 0 ia[31:0]  0#29 vdd 0 0 newPC[31:0] h i j adder32
+.ends
+
+
+
+
+.subckt regfile clk werf wasel ra2sel ra[4:0] rb[4:0] rc[4:0] 
++ wdata[31:0] radata[31:0] rbdata[31:0]
+
+XXP1 xp[4:1] constant1
+XXP2 xp0 constant0 
+
+*ra2selmux
+XmuxRA2SEL ra2sel#5 rb[4:0] rc[4:0] RAout[4:0] mux2
+
+*wasel
+Xwamux wasel#5 rc[4:0] xp[4:0] w[4:0] mux2
+
+Xregfile
++ vdd 0 0 ra[4:0] adata[31:0] // A read port 
++ vdd 0 0 RAout[4:0] bdata[31:0] // B read port 
++ 0 clk werf w[4:0] wdata[31:0] // write port 
++ $memory width=32 nlocations=31
+
+Xand1 RAout[4:1] Z0 and4
+Xand2 RAout0 Z0 Z1 and2
+Xmux1 Z1#32 bdata[31:0] 0#32 rbdata[31:0] mux2
+
+Xand3 ra[4:1] X2 and4
+Xand4 ra0 X2 X3 and2
+Xmuxagain X3#32 adata[31:0] 0#32 radata[31:0] mux2
+
+.ends
+//ctl
+.subckt ctl reset oppa[5:0] z pcsel[2:0] wasel asel ra2sel bsel alufn[5:0] wdsel[1:0] werf moe wr 
+Xctlrom vdd 0 0 oppa[5:0] // one read port
++ xpcsel[2:0] wasel asel ra2sel bsel alufn[5:0] wdsel[1:0] werf moe xwr 
++ $memory width=18 nlocations=64 contents=(
+// the first 24 blanks in the OPCODE TABLE 
+	+ 0b011100000000000100 // opcode=0b000000 
+	+ 0b011100000000000100 // opcode=0b000001 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b011100000000000100 
+	+ 0b100100000000000100  //irq
+	+ 0b011100000000000100 //24th 
+	+ 0b000000100000010110 //LD
+	+ 0b000001100000000001 //ST
+	+ 0b011100000000000100 //empty
+	+ 0b010000000000000100 //JMP
+	+ 0b011100000000000100 //empty
+	+ 0b001000000000000100 //BEQ
+	+ 0b001000000000000100 //BNE
+	+ 0b000010001101010110  //LDR
+	+ 0b000000000000001100 //ADD
+	+ 0b000000000000101100 //SUB 
+	+ 0b011000000000000100 //MUL
+	+ 0b011000000000000100 //DIV
+	+ 0b000000011001101100 //CMPEQ
+	+ 0b000000011010101100 //CMPLT
+	+ 0b000000011011101100 //CMPLE
+	+ 0b011100000000000100 //EMPTY
+	+ 0b000000001100001100 //AND
+	+ 0b000000001111001100 //OR
+	+ 0b000000001011001100 //XOR
+	+ 0b011100000000000100 //EMPTY
+	+ 0b000000010000001100 //SHL
+	+ 0b000000010000101100 //SHR
+	+ 0b000000010001101100 //SRA 
+	+ 0b011100000000000100 //EMPTY
+	+ 0b000000100000001100 //ADDC
+	+ 0b000000100000101100 //SUBC
+	+ 0b011000000000000100 //MULC
+	+ 0b011000000000000100 //DIVC
+	+ 0b000000111001101100 //CMPEQC
+	+ 0b000000111010101100 //CMPLTC
+	+ 0b000000111011101100 //CMPLEC 
+	+ 0b011100000000000100 //EMPTY
+	+ 0b000000101100001100 //ANDC
+	+ 0b000000101111001100 //ORC
+	+ 0b000000101011001100 //XORC
+	+ 0b011100000000000100 //EMPTY
+	+ 0b000000110000001100 //SHLC
+	+ 0b000000110000101100 //SHRC
+	+ 0b000000110001101100 //SRAC
+	+ 0b011100000000000100 //EMPTY 
+	+ )
+Xmux reset xwr 0 wr mux2
+
+
+***BEQ***
+Xbeqinverter oppa5 idn5 inverter
+Xbeqinverter2 oppa1 idn1 inverter
+Xbeqand1 idn5 oppa4 one and2
+Xbeqand2 oppa3 oppa2 two and2
+Xbeqand3 idn1 oppa0 three and2
+Xbeqdone one two three beqsignal and3 
+Xbeqfinal z beqsignal beqsignalreal and2
+
+***BNE***
+Xbneinverter oppa0 idn0 inverter
+*Xbneand1 idn5 oppa4 bneout1 and2
+*Xbneand2 oppa3 bneout1 bnesignal and2 
+Xbneand idn0 oppa1 bneout2 and2
+Xbnefinaland one two bneout2 bneoutsignal and3 
+XbneZ z invz inverter
+Xbnesignalout invz bneoutsignal realBNE and2
+
+*which 
+XwhichB beqsignal bneoutsignal xpcsel0 z invz 0 pcsel0 mux4
+XwhicBsg xpcsel[2:1] pcsel[2:1] knex
+
+*XwhichB realBNE realBEQ topcsel or2 
+ 
+*XFORBEQ beqsignal bnesignal xpcsel0 z invz 0 pcsel0 mux4
+*XFORBEQ2 xpcsel[2:1] pcsel[2:1] buffer
+.ends
+
+.subckt knex a b
+.connect a b
+.ends
+
+.subckt Bselcircuit ctrl  RD2[31:0] ID[15:0] B[31:0] 
+XBmux ctrl#32 RD2[31:0] ID15#16 ID[15:0]  B[31:0] mux2
+.ends 
+
+.subckt WDSELcircuit ctrl[1:0] OP[31:0] ALU[31:0] RD[31:0]  WD[31:0]
+XWDmux  ctrl1#32 ctrl0#32 OP[31:0] ALU[31:0] RD[31:0] 0#32 WD[31:0] mux4 
+.ends  
+
+***SIGN EXTENSION WITH SHIFTING****
+.subckt signExtension input[15:0] output[31:0]
+Xfirstsign input15#16 input[15:0] firstO[31:0] knex
+*sign extension * 14 + the orignal input[15:0] + 00 cos times 4 means shift 2 times 
+Xsecondsign firstO15#14 firstO[15:0] 0#2 output[31:0] knex 
+*Xfirstsign input[13:0] 0#2 outputone[15:0] knex
+*Xsecondsign input13#16 outputone[15:0] output[31:0] knex
+.ends
+***PLAIN SIGN EXTENSION***
+.subckt sgnext c_input[15:0] c_output[31:0]
+Xfirsto c_input[15:0] c_output[15:0] knex
+Xsecondo c_input15#16 c_output[31:16] knex
+.ends
+
+.subckt beta clk reset irq ia[31:0] id[31:0] ma[31:0] moe mrd[31:0] wr mwd[31:0]
+
+***********PC*****************
+XthepC clk reset pcsel[2:0] jt[31:0] extendedPC[31:0] ia[31:0] newPC[31:0] id[15:0] pc
+
+*IRQ part *******************
+**getting IRQ**
+*Xinverter ia31 ian31 inverter
+*XandInter ian31 irq int and2
+Xirqout 0 vdd 0 vdd vdd 0 opirq[5:0] knex
+Xirq ia[31]#6 irq#6 id[31:26] id[31:26] opirq[5:0] id[31:26] opcode[5:0] mux4
+
+
+***************CTL***************
+XtheCTL reset opcode[5:0] z pcsel[2:0] wasel asel ra2sel bsel ALUFN[5:0] wdsel[1:0] werf moe wr ctl 
+
+*********REG***************
+XtheREGFILE clk werf wasel ra2sel id[20:16] id[15:11] id[25:21] 
++ wdata[31:0] aseldata[31:0] mwd[31:0] regfile
+
+********JT STUFF ********
+*to make them into one variable , part A
+XandforJT ia31 aseldata31 toJTPC31 and2
+ *force Jt to be 0 , part d 
+XcorrectJT toJTPC31 aseldata[30:2] 0 0 jt[31:0] knex
+
+***NEW*** for part F for z ***********
+*giant nor circuit , don't nor everything
+XnorOne aseldata[31:0] xradataNOR[7:0] nor4
+XnorTwo xradataNOR[7:0] xradataNORR[1:0] and4
+XnorThree xradataNORR[1:0] z and2
+
+*********BSEL**************
+Xbsel bsel mwd[31:0] id[15:0] b[31:0] Bselcircuit
+
+**********ASEL***********
+*force to 0  for branch-offset input to asel 
+XotherinputtoaSEL extendedPC[30:0] asel1[30:0] knex
+Xasel asel#32 aseldata[31:0] 0 extendedPC[30:0] radata[31:0] mux2
+
+*********ALUSHIT*************
+Xalushit alufn[5:0] radata[31:0] b[31:0] ma[31:0] zika vanilla nonchocolate alu
+
+**********WDSEL************
+*check to PC+4, change dfor part E  
+Xnewforwdsel ia31 newPC[30:0] firstoption[31:0] knex
+Xwdsel wdsel[1:0] firstoption[31:0] mrd[31:0] ma[31:0] wdata[31:0] WDSELcircuit
+
+
+
+.ends

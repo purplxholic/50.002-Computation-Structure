@@ -1,0 +1,152 @@
+| include instruction macros and test jig
+.include beta.uasm
+.include lab5checkoff.uasm
+
+count_bull_cows: | your subroutine must have this name
+	PUSH(LP) | standard subroutine entry sequence
+	PUSH(BP)
+	MOVE(SP, BP)
+
+	PUSH(R2) | A
+	PUSH(R3) | B
+	PUSH(R4) | BULLS
+	PUSH(R5) | COWS
+	PUSH(R6) | I
+	
+	PUSH(R8) | BTEMP
+	PUSH(R9) | ATRY
+	PUSH(R10) | BTRY
+	PUSH(R11) | MASK
+	PUSH(R20) |i
+	PUSH(R12) |j
+	PUSH(R13) |new bulls
+	
+
+	LD(BP,-12,R2) | arg 1 A
+	LD(BP,-16,R3) |arg 2 B  
+
+
+	CMOVE(0xF,R11)| mask = 0xF
+	CMOVE(0,R4) | bull = 0
+	.breakpoint
+
+
+|R20 will be i 
+|compute bulls
+	CMOVE(0,R20) | initialise the loop variable 
+	BR(endfirstloop)
+
+
+firstloop:
+
+	AND(R2,R11,R21) | a & mask
+	AND(R3,R11,R22)|b & mask
+	CMPEQ(R22,R21,R0) | R0 will be 1 if (a&mask) == (b&mask)
+	BT(R0,else_001) |branch to if loop if R0 = 1 
+	SHLC(R11,4,R11) | mask << 4 
+	ADDC(R20,1,R20) | increment of i
+	BF(R0,endfirstloop) | branch if it's false 
+
+else_001:
+	ADDC(R4,1,R4) |bull + 1 
+	OR(R2,R11,R2) | a or mask
+	OR(R3,R11,R3) | b or mask
+	BR(endelse_001) |end of if loop 
+
+endelse_001:
+	SHLC(R11,4,R11) | mask << 4 
+	ADDC(R20,1,R20) | increment of i
+	BR(endfirstloop) |to check  
+
+endfirstloop:
+	CMPLTC(R20,4,R0) |check if it's true or not. will be 1 if i < 4
+	BT(R0,firstloop) |will branch if R0 is 1
+	|otherwise
+	|get ready for the next one 
+	CMOVE(0,R20) |reset i to 0
+	CMOVE(0,R5) | cows = 0 
+	CMOVE(0,R12) | SET J TO BE 0
+
+	BR(outersecondloop) |jump to secondloop 
+
+
+|compute cows
+	
+secondloop: |for (i=0, o <4, i++)
+	ANDC(R2,0xF,R9) | atry = a &0xF
+	SHRC(R2,4,R2) | a = a>> 4
+	CMPEQC(R9,0xF,R0) |returns 1 if they're equal
+	BF(R0, ifouter) |branches if R0 = 1
+	ADDC(R20,1,R20) |increase i if it's false 
+	BT(R0,outersecondloop) |then branch out 
+	|.breakpoint 
+
+ifouter: | atry! = 0xF
+	MOVE(R3,R8) | btemp = b
+	CMOVE(0xF,R11)| mask = 0xF
+	CMOVE(0,R12) |set j to be 0 <
+	BR(secondloopForInner) |after exe, goes to next for
+
+
+secondloopForInner:
+	|for j , goes to next if 
+	ANDC(R8,0xF,R10) | btry = temp & 0xF
+	SHRC(R8,4,R8) | btemp = btemp >>4
+	|.breakpoint  
+	CMPEQ(R10,R9,R0) |check if btry == atry 
+	BT(R0,ifinner) |branch if R0 = 1 
+	ADDC(R12,1,R12) |increase j by one 
+	BF(R0,endsecondloopforinner)
+	
+
+ifinner: |if atry == btry 
+	ADDC(R5,1,R5) | cows = cows + 1 
+	OR(R3,R11,R3) | b = b or mask
+	ADDC(R12,1,R12) |increase j by one 
+	BR(endifouter)
+	|BR(countsecondloopforinner) 
+
+
+endsecondloopforinner:
+	CMPLTC(R12,4,R0) |check if it's true or not. will be 1 if j < 4
+	SHLC(R11,4,R11) |mask = mask <<4
+	BT(R0,secondloopForInner) |will branch if R0 is 1 
+	|otherwise
+	BR(endifouter) |out to exit loop of outer if < 
+
+endifouter:
+	ADDC(R20,1,R20) |increase i by 1 
+	|.breakpoint 
+	BR(outersecondloop) |go out to outer of second for loop
+
+
+outersecondloop:
+	CMPLTC(R20,4,R0) |i < 4
+	|.breakpoint
+	BT(R0, secondloop) |goes back to loop if R0 = 1
+	BF(R0,EXIT) |otherwise exit the entire for 
+
+EXIT:
+	SHLC(R4,4,R13) |shift bulls left 
+	ADD(R13,R5,R0) |return 
+	|.breakpoint
+	POP(R13)
+	POP(R12)
+	POP(R20) | 
+	POP(R11) |
+	POP(R10) | 
+	POP(R9) | 
+	POP(R8) | 
+	
+	POP(R6) | 
+	POP(R5) | 
+	POP(R4) | 
+	POP(R3) 
+	POP(R2) 
+	MOVE(BP,SP) | standard subroutine 
+	POP(BP)
+	POP(LP)
+	RTN()
+
+StackBase: LONG(.+4) | Pointer to bottom of stack
+. = .+0x1000 | Reserve space for stack...
