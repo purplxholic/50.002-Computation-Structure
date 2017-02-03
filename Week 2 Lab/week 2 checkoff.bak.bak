@@ -1,0 +1,15 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim" 
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab1checkoff.jsim"
+*set up the circuit 
+
+.subckt F A B C Z 
+MPU1 A vdd 1 vdd PENH sw=10 sl = 1
+MPU2 1 B 2 vdd PENH sw=10 sl=1
+MPU3 vdd C 2 vdd PENH sw=10 sl=1 
+MPU4 Z 2 vdd vdd PENH sw=10 sl=1
+
+MPD1 3 A 0 0 NENH sw=8 sl=1
+MPD2 3 B 0 0 NENH sw=8 sl=1 
+MPD3 2 C 3 0 NENH sw=8 sl=1 
+MPD4 Z 2 0 0 NENH sw=8 sl=1
+.ends
