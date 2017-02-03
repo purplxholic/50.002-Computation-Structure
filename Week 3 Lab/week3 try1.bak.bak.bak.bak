@@ -1,0 +1,97 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab2checkoff.jsim"
+
+
+
+*NOR gate a b inputs, z output
+*ok
+.subckt nor2 a b z
+MPD1 z a 0 0 NENH sw=8 sl=1
+MPD2 z b 0 0 NENH sw=8 sl=1
+MPU1 1 a vdd vdd PENH sw=8 sl=1
+MPU2 z b 1 vdd PENH sw=8 sl=1
+.ends
+
+*XNOR gate, a b inputs,z is output 
+*OK
+.subckt xnor2 a b z
+Xnor a b 1 nand2
+MPD1 z 1 2 0 NENH sw=2 sl=1
+MPD2 2 b 0 0 NENH sw=2 sl=1
+MPD3 2 a 0 0 NENH sw=2 sl=1
+MPU1 z 1 vdd vdd PENH sw=4 sl=4
+MPU2 3 b vdd vdd PENH sw=4 sl=1
+MPU3 z a 3 vdd PENH sw=4 sl=1
+.ends
+
+*XOR gate, a and b are inputs, z is output
+*must create nor
+*OK
+.subckt xor2 a b z
+Xor a b 1 nor2 
+MPU1 3 a vdd vdd PENH sw=4 sl=1
+MPU2 z 1 3 vdd PENH sw=4 sl=1
+MPU3 z a 5 0 NENH sw=2 sl=1
+MPU4 5 b 0 0 NENH sw=2 sl=1
+MPU5 3 b vdd vdd PENH sw=4 sl=1
+MPU6 z 1 0 0 NENH sw=2 sl=1
+.ends
+
+
+* 2-input NAND: inputs are A and B, output is Z
+*OK
+.subckt nand2 a b z
+MPD1 z a 1 0 NENH sw=8 sl=1
+MPD2 1 b 0 0 NENH sw=8 sl=1
+MPU1 z a vdd vdd PENH sw=8 sl=1
+MPU2 z b vdd vdd PENH sw=8 sl=1
+.ends
+
+
+*3-input NAND: inputs are a and b, output is z 
+*OK
+.subckt nand3 a b c z
+MPD1 z a 1 0 NENH sw=8 sl=1
+MPD2 1 b 2 0 NENH sw=8 sl=1
+MPD3 2 c 0 0 NENH sw=8 sl=1
+MPU1 z a vdd vdd PENH sw=8 sl=1 
+MPU2 z b vdd vdd PENH sw=8 sl=1
+MPU3 z c vdd vdd PENH sw=8 sl=1 
+.ends 
+
+
+
+.subckt FA a b ci s co
+Xxor1 a b 1 xor2
+Xxor2 1 ci s xor2
+Xand11 b a 2 nand2
+Xand12 2 2 3 nand2
+Xand21 1 ci 4 nand2
+Xand22 4 4 5 nand2
+Xor11 3 5 6 nor2
+Xor12 6 6 co nor2 
+.ends
+
+*to test the gates 
+*Xtest clk1 clk2  z  nor2
+*.tran 20ns
+*.plot clk1
+*.plot clk2
+*.plot clk3
+*.plot z
+
+.subckt ADDER4 a3 a2 a1 a0 b3 b2 b1 b0 s4 s3 s2 s1 s0 
+* remember the node named "0" is the ground node 
+* nodes c0 through c3 are internal to the ADDER module 
+Xbit0 a0 b0 0 s0 c0 FA 
+Xbit1 a1 b1 c0 s1 c1 FA 
+Xbit2 a2 b2 c1 s2 c2 FA 
+Xbit3 a3 b3 c2 s3 s4 FA 
+.ends
+
+.plot L(xtest.c0)
+.plot L(xtest.c1)
+.plot L(xtest.c2)
+.plot L(xtest.xbit1.5)
+.plot L(xtest.xbit1.1)
+
