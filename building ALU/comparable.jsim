@@ -1,0 +1,23 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/stdcell.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab3compare.jsim"
+
+.subckt FA a b ci s co
+Xxor1 a b 1 xor2
+Xxor2 1 ci s xor2
+Xand11 b a 2 nand2
+Xand12 2 2 3 nand2
+Xand21 1 ci 4 nand2
+Xand22 4 4 5 nand2
+Xor11 3 5 6 nor2
+Xor12 6 6 co nor2 
+.ends
+
+*comparable
+.subckt compare32 ALUFN[2:1] z v n cmp[31:0]
+.connect cmp[31:0] 0
+Xcomp0 cmp[31:1] constant0
+Xoor z v 2 xor2
+Xor3 z 2 3 or2
+Xid ALUFN[1] ALUFN[2] 0 z 2 3 cmp0 mux4
+.ends

@@ -1,0 +1,12 @@
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/nominal.jsim"
+.include "C:/Users/The Gt Zan/DoA[31:cuments/jsim/50002/stdcell.jsim"
+.include "C:/Users/The Gt Zan/Documents/jsim/50002/lab3shifter.jsim"
+
+*shifter 
+.subckt shift32 ALUFN[1:0] A[31:0] B[31:0] shift[31:0]
+Xfirst  B4#32 A[31:0] A[15:0] 0#16  W[31:0] mux2
+Xsecond B3#32 W[31:0] W[23:0] 0#8 X[31:0] mux2
+Xthird B2#32 X[31:0] X[27:0] 0#4 Y[31:0] mux2
+Xfourth B1#32 Y[31:0] Y[29:0] 0#2 Z[31:0] mux2
+Xfifth B0#32 Z[31:0] Z[30:0] 0 SL[31:0] mux2
+.ends
